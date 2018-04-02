@@ -1,1 +1,81 @@
 /* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+@import 'assets/css/glyphicons.css';
+
+.selected-item {
+    border: whitesmoke solid 1px;
+    border-right: white solid 8px!important;
+    max-height: 300px;
+    -webkit-transition: all 200ms ease-out 200ms;
+    -moz-transition: all 200ms ease-out 200ms;
+    -o-transition: all 200ms ease-out 200ms;
+    transition: all 200ms ease-out 200ms;
+}
+
+.tasks-heading {
+    font-size: 18px;
+    color: #4A4A4A;
+}
+
+.list-group-item {
+    background-color: #222222;
+    color: #4A4A4A;
+    border-right: transparent;
+    border-left: transparent;    
+    cursor: pointer;    
+}
+
+.list-group-item:hover {
+    color: #9d9d9d!important;
+    border: #9d9d9d solid 1px;
+    background-color: #111111;
+}
+
+.list-group-item:first-child, .list-group-item:last-child {
+    border-radius: 0;
+}
+
+.slidenav {
+    height: 100%;
+    width: 400px;
+    position: fixed;
+    z-index: 1;
+    background-color: #F5F5F5;
+    border-right: solid 1px #F5F5F5;
+    box-shadow: 2px 1px 10px #c5c5c5;
+    color: #011;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding: 15px;
+}
+
+.content-wrapper {
+    height: calc(100% - 52px);
+    width: calc(100% - 452px);
+    left: 452px;
+    position: fixed;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding: 15px;
+}
+
+.input-filter {
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.detail-description {
+    font-size: 12px;
+    color: #999999;
+    margin-bottom: 0;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;        
+}
+
+.modal-backdrop {
+    /* bug fix - no overlay */    
+    display: none !important;    
+}

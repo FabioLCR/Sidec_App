@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { KeycloakService } from 'keycloak-angular';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  title = 'SIDEC';
+  constructor(private kc: KeycloakService) { }
+
+  logout() {
+    this.kc.logout();
+  }
+
+  public getUserName() {
+    return this.kc.getUsername();
+  }
 }
