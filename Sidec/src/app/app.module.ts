@@ -10,6 +10,7 @@ import { InboxComponent } from './inbox/inbox.component';
 import { NovaSolicitacaoComponent } from './nova-solicitacao/nova-solicitacao.component';
 import { PesquisaComponent } from './pesquisa/pesquisa.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { HeadingComponent } from './heading/heading.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     NovaSolicitacaoComponent,
     PesquisaComponent,
     PageNotFoundComponent,
+    HeadingComponent,
   ],
   imports: [
     BrowserModule,
