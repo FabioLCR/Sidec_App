@@ -1,7 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
-
 import { NgModule, APP_INITIALIZER } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
+import { NgbDatepickerConfig, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDatePTParserFormatter } from './conf/NgbDatePTParserFormatter';
+import { NgbDatepickerI18n } from '@ng-bootstrap/ng-bootstrap';
+import { CustomDatepickerI18n, I18n } from './conf/CustomDatepickerI18n';
+
 import { KeycloakService, KeycloakAngularModule } from 'keycloak-angular';
 import { initializer } from './app-init';
 import { RouterModule, Routes } from '@angular/router';
@@ -11,7 +17,8 @@ import { NovaSolicitacaoComponent } from './nova-solicitacao/nova-solicitacao.co
 import { PesquisaComponent } from './pesquisa/pesquisa.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HeadingComponent } from './heading/heading.component';
-
+import { InboxFiltroComponent } from './inbox/inbox-filtro/inbox-filtro.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -21,10 +28,14 @@ import { HeadingComponent } from './heading/heading.component';
     PesquisaComponent,
     PageNotFoundComponent,
     HeadingComponent,
+    InboxFiltroComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    NgbModule.forRoot(),
     KeycloakAngularModule
   ],
   providers: [
@@ -33,7 +44,9 @@ import { HeadingComponent } from './heading/heading.component';
       useFactory: initializer,
       multi: true,
       deps: [KeycloakService]
-    }
+    },
+    [I18n, { provide: NgbDatepickerI18n, useClass: CustomDatepickerI18n }],
+    [{provide: NgbDateParserFormatter, useClass: NgbDatePTParserFormatter}],
   ],
   bootstrap: [AppComponent]
 })
