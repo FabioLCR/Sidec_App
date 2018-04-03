@@ -9,12 +9,14 @@ import { KeycloakService } from 'keycloak-angular';
 export class HeadingComponent implements OnInit {
 
   constructor(private kc: KeycloakService) { }
+  ngOnInit() {
+  }
 
   logout() {
     this.kc.logout();
   }
 
-  ngOnInit() {
+  public getUserName() {
+    return this.kc.getUsername();
   }
-
 }
