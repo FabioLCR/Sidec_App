@@ -1,0 +1,79 @@
+<div>
+  <!-- <ngx-datatable
+    class="bootstrap"
+    [rows]="rows"
+    [loadingIndicator]="loadingIndicator"
+    [columns]="columns"
+    [columnMode]="'force'"
+    [headerHeight]="40"
+    [footerHeight]="40"
+    [limit]="10"
+    [rowHeight]="'auto'"
+    [reorderable]="reorderable"
+    [selectionType]="'single'">
+  </ngx-datatable> -->
+
+  <ngx-datatable class="bootstrap" 
+  [rows]="rows" 
+  [columnMode]="'force'" 
+  [headerHeight]="50" 
+  [footerHeight]="50" 
+  [rowHeight]="'auto'"
+  [selectionType]="'single'" 
+  (select)='onSelect($event)'>
+
+    <ngx-datatable-column name="Name">
+      <ng-template let-column="column" ngx-datatable-header-template>
+        Holla! {{column.name}}
+      </ng-template>
+
+      <ng-template let-value="value" ngx-datatable-cell-template>
+        Hi:
+        <strong>{{value}}</strong>
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="Gender">
+      <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+        <span (click)="sort()">{{column.name}}teste</span>
+      </ng-template>
+
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+        My name is:
+        <i [innerHTML]="row['name']"></i> and
+        <i>{{value}}</i>
+        <div>{{joke}}</div>
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="Age">
+      <ng-template let-value="value" ngx-datatable-cell-template>
+        <div style="border:solid 1px #ddd;margin:5px;padding:3px">
+          <div style="background:#999;height:10px" [style.width]="value + '%'"></div>
+        </div>
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="Pesquisar">
+      <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+        <a class="navbar-toggler navbar-togglerSIDEC" (click)="pesquisa(row, rowIndex)">
+          <span class="glyphicon glyphicon-search"></span>
+        </a>
+      </ng-template>
+    </ngx-datatable-column>
+
+
+  </ngx-datatable>
+
+  <div class='selected-column'>
+    <h4>Selections
+      <small>({{selected?.length}})</small>
+    </h4>
+    <ul>
+      <li *ngFor='let sel of selected'>
+        {{sel.name}}
+      </li>
+      <li *ngIf="!selected?.length">No Selections</li>
+    </ul>
+  </div>
+</div>

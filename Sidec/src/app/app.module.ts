@@ -7,6 +7,8 @@ import { NgbDatepickerConfig, NgbDateParserFormatter } from '@ng-bootstrap/ng-bo
 import { NgbDatePTParserFormatter } from './conf/NgbDatePTParserFormatter';
 import { NgbDatepickerI18n } from '@ng-bootstrap/ng-bootstrap';
 import { CustomDatepickerI18n, I18n } from './conf/CustomDatepickerI18n';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 import { KeycloakService, KeycloakAngularModule } from 'keycloak-angular';
 import { initializer } from './app-init';
@@ -18,7 +20,7 @@ import { PesquisaComponent } from './pesquisa/pesquisa.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HeadingComponent } from './heading/heading.component';
 import { InboxFiltroComponent } from './inbox/inbox-filtro/inbox-filtro.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { InboxGridComponent } from './inbox/inbox-grid/inbox-grid.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     PageNotFoundComponent,
     HeadingComponent,
     InboxFiltroComponent,
+    InboxGridComponent,
     
   ],
   imports: [
@@ -36,6 +39,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AppRoutingModule,
     FormsModule,
     NgbModule.forRoot(),
+    NgxDatatableModule,
     KeycloakAngularModule
   ],
   providers: [
