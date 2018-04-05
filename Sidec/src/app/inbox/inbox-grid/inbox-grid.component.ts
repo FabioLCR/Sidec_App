@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-inbox-grid',
   templateUrl: './inbox-grid.component.html',
+  encapsulation: ViewEncapsulation.None,
   styleUrls: ['./inbox-grid.component.css']
 })
 export class InboxGridComponent implements OnInit {
@@ -41,7 +42,7 @@ export class InboxGridComponent implements OnInit {
 
   constructor() {
     this.fetch((data) => {
-      this.rows = data.splice(0, 5);
+      this.rows = data
     });
   }
 
@@ -54,15 +55,6 @@ export class InboxGridComponent implements OnInit {
     };
 
     req.send();
-  }
-
-  pesquisa(rows, currentIndex) {
-    alert(currentIndex)
-    
-  }
-
-  onSelect({ rows, currentIndex }) {
-
   }
 
   ngOnInit() {

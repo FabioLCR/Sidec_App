@@ -75,7 +75,7 @@
     -webkit-box-orient: vertical;        
 }
 
-.modal-backdrop {
+/* .modal-backdrop { */
     /* bug fix - no overlay */    
-    display: none !important;    
-}
+    /* display: none !important;     */
+/* } */

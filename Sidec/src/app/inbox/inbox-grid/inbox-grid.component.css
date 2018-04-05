@@ -1,0 +1,10 @@
+.GridIcons, .GridIcons:hover {
+    margin-left: 15px;
+    cursor: pointer;
+    color: inherit;
+}
+
+datatable-body-row.datatable-body-row:hover{
+    background-color: rgb(250, 170, 120) !Important;
+    color: inherit !Important;
+}
