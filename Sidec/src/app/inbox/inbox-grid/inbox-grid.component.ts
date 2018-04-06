@@ -35,7 +35,6 @@ export class InboxGridComponent implements OnInit {
               outFields: ["NAME", "GEOID", "MTFCC", "ALAND", "AWATER"],
               visible: true,
               id: "fLayer",
-              filter: "NAME like 'Block 10%'"
             });
             myFeatureLayer.setDefinitionExpression("NAME like 'Block 10%'");
 
