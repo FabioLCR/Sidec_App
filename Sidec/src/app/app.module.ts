@@ -19,6 +19,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { HeadingComponent } from './heading/heading.component';
 import { InboxFiltroComponent } from './inbox/inbox-filtro/inbox-filtro.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { InboxGridComponent } from './inbox/inbox-grid/inbox-grid.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     PageNotFoundComponent,
     HeadingComponent,
     InboxFiltroComponent,
+    InboxGridComponent,
     
   ],
   imports: [
