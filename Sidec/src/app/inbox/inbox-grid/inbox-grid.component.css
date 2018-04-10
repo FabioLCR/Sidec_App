@@ -1,14 +1,47 @@
-html, 
-body, 
-#myTableNode {
-    width:100%;
-    height:100%;
-    margin:0;
-    padding:0;
+@import "https://js.arcgis.com/3.23/dijit/themes/claro/claro.css";
+@import "https://js.arcgis.com/3.23/esri/css/esri.css";
+
+.esri-feature-table-grid, .esri-feature-table-menu
+{
+    width: calc( 100% - 15px) !important;
 }
 
-#top, 
-#bot {
-    margin: 0;
-    padding: 0;
+/* .esri-feature-table-grid
+{
+    width: calc( 100% - 15px) !important;
+} */
+
+.esri-feature-table  .esri-feature-table-grid
+{
+    /* left: auto;
+    right: auto;
+    top: auto;
+    bottom: auto; */
+    height: calc( 100% - 150px) !important;
+    
+    /* position: relative; */
+
+} 
+
+.dgrid-content .ui-widget-content
+{
+    width: auto !important;
+}
+
+
+
+
+ .esri-feature-table-border-container
+{
+    width: 100% !important;
+}
+
+.esri-feature-table .esri-feature-table-menu
+{
+    position: absolute !important;
+}   
+
+.dijitBorderContainer, .dijitBorderContainerNoGutter {
+    position: absolute;
+    height: inherit;
 }

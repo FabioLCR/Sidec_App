@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewEncapsulation, Input, OnInit } from '@angular/core';
 import esriLoader from 'esri-loader'
+
 
 @Component({
   selector: 'app-inbox-grid',
+  encapsulation: ViewEncapsulation.None,
   templateUrl: './inbox-grid.component.html',
   styleUrls: ['./inbox-grid.component.css']
 })
@@ -11,7 +13,13 @@ export class InboxGridComponent implements OnInit {
 
   constructor() { }
 
+  private _name : string;
 
+  @Input('filterName')
+  set filterName(name : string) {
+    this._name  = (name  && name.trim()) || '';
+  }
+  get filterName(): string { return this._name; }
 
   ngOnInit() {
     const options = {
@@ -28,15 +36,16 @@ export class InboxGridComponent implements OnInit {
         "dojo/ready",]).then(([FeatureLayer, FeatureTable, dom, parser, ready]) => {
           parser.parse();
 
-          ready(function () {
+          ready( () => {
             // Create the feature layer
             var myFeatureLayer = new FeatureLayer("https://services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/california_census_blocks/FeatureServer/0", {
               mode: FeatureLayer.MODE_ONDEMAND,
-              outFields: ["NAME", "GEOID", "MTFCC", "ALAND", "AWATER"],
+              outFields: ["*"],
               visible: true,
               id: "fLayer",
             });
-            myFeatureLayer.setDefinitionExpression("NAME like 'Block 10%'");
+   
+            myFeatureLayer.setDefinitionExpression("NAME like '%" + this.filterName + "%'");
 
             var myTable = new FeatureTable({
               featureLayer: myFeatureLayer,
@@ -54,6 +63,7 @@ export class InboxGridComponent implements OnInit {
             }, "myTableNode");
 
             myTable.startup();
+            myTable.refresh();
           });
         });
 

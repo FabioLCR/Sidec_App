@@ -2,6 +2,8 @@
 /* You can add global styles to this file, and also import other style files */
 /* You can add global styles to this file, and also import other style files */
 @import 'assets/css/glyphicons.css';
+@import "https://js.arcgis.com/3.23/dijit/themes/claro/claro.css";
+@import "https://js.arcgis.com/3.23/esri/css/esri.css";
 
 .selected-item {
     border: whitesmoke solid 1px;
