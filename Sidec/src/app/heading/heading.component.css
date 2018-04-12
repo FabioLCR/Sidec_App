@@ -44,6 +44,7 @@ h1 {
 
 .navbar-togglerSIDEC{
     border: none;
+    position: relative;
 }
 
 #navbarSIDEC>.navbar-nav>.nav-item>.nav-link{

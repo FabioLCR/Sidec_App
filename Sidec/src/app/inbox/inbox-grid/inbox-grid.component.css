@@ -23,3 +23,62 @@
     cursor: pointer;
     color: inherit;
 }
+
+/*Para controlar o tamanho da coluna de icones*/
+
+/* Resluções */
+@media screen {
+    .field-GEOID
+    {
+        width: 68px !important; 
+    }
+}
+
+@media screen and (min-width: 240px) { /* 270px */
+    .field-GEOID
+    {
+        width: 67px !important; 
+    }
+}
+
+@media screen and (min-width: 450px) { /* 480px */
+    .field-GEOID
+    {
+        width: 52px !important; 
+    }
+}
+
+@media screen and (min-width: 650px) { /* 680px */
+    .field-GEOID
+    {
+        width: 40px !important; 
+    }
+}
+
+@media screen and (min-width: 738px) { /* 768px */
+    .field-GEOID
+    {
+        width: 30px !important; 
+    }
+}
+
+@media screen and (min-width: 994px) { /* 1024px */
+    .field-GEOID
+    {
+        width: 22px !important;
+    }
+}
+
+@media screen and (min-width: 1250px) { /* 1280px */
+    .field-GEOID
+    {
+        width: 17px !important;
+    }
+}
+
+@media screen and (min-width: 1330px) { /* 1360px */
+    .field-GEOID
+    {
+        width: 16px !important;
+    }
+}
