@@ -1,9 +1,37 @@
 @import "https://js.arcgis.com/3.23/dijit/themes/claro/claro.css";
 @import "https://js.arcgis.com/3.23/esri/css/esri.css";
 
+#myRefreshTableNode
+{
+    position: absolute;
+    height: 28px;
+    padding: 1px;
+    cursor: pointer;
+    font-size: 0.7rem;
+    padding-left: 3px;
+    padding-right: 3px;
+    border-radius: 8px;
+    /* right: 43px; */
+    z-index: 1;
+    display: none; 
+}
+
+.esri-feature-table-loading-indicator
+{
+    position: absolute;
+    z-index: 2;
+    margin-top: 27px;
+}
+
+#myTableNode>#myRefreshTableNode
+{
+    display: block; 
+}
+
 #myTableNode
 {
-    height: calc( 100vh - 314px);
+    height: calc( 100vh - 300px);
+    min-height: 200px;
 }
 
 .collapsed>#myDivTableNode
@@ -14,7 +42,6 @@
 .field-OBJECTID, .field-GEOID
 {
     width: 47px !important;
-    
     display: table-cell;
 }
 

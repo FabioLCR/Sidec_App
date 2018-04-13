@@ -17,7 +17,6 @@ import { NovaSolicitacaoComponent } from './nova-solicitacao/nova-solicitacao.co
 import { PesquisaComponent } from './pesquisa/pesquisa.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HeadingComponent } from './heading/heading.component';
-import { InboxFiltroComponent } from './inbox/inbox-filtro/inbox-filtro.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { InboxGridComponent } from './inbox/inbox-grid/inbox-grid.component';
 
@@ -29,7 +28,6 @@ import { InboxGridComponent } from './inbox/inbox-grid/inbox-grid.component';
     PesquisaComponent,
     PageNotFoundComponent,
     HeadingComponent,
-    InboxFiltroComponent,
     InboxGridComponent,
     
   ],
