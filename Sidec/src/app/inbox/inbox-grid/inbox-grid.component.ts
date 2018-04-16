@@ -5,6 +5,8 @@ import { format } from 'util';
 import { Router } from '@angular/router';
 import { fakeAsync } from '@angular/core/testing';
 
+declare var $: any;
+
 @Component({
   selector: 'app-inbox-grid',
   encapsulation: ViewEncapsulation.None,
@@ -21,7 +23,7 @@ export class InboxGridComponent implements OnInit, OnDestroy {
 
   private _name: string;
   private pencil = "teste";
-
+  show: boolean = false;
   @Input('tamanho')
   private tamanho: boolean;
 
@@ -33,7 +35,7 @@ export class InboxGridComponent implements OnInit, OnDestroy {
   get filterName(): string { return this._name; }
 
   r_info(id: string) {
-    this.router.navigate(['/NovaSolicitacao', id]);
+    $("#inboxDescSolicBtn").click();
   }
 
   r_edit(id: string) {

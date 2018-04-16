@@ -19,6 +19,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { HeadingComponent } from './heading/heading.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { InboxGridComponent } from './inbox/inbox-grid/inbox-grid.component';
+import { InboxDescricaoSolicitacaoComponent } from './inbox/inbox-descricao-solicitacao/inbox-descricao-solicitacao.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { InboxGridComponent } from './inbox/inbox-grid/inbox-grid.component';
     PageNotFoundComponent,
     HeadingComponent,
     InboxGridComponent,
+    InboxDescricaoSolicitacaoComponent,
     
   ],
   imports: [

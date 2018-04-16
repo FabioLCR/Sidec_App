@@ -39,6 +39,22 @@
     height: calc( 100vh - 195px);
 }
 
+
+ .esri-feature-table .dgrid-row:hover
+{
+    background-color: rgb(250, 200, 160) !Important;
+}
+
+.esri-feature-table .ui-state-active
+{
+    background-color: rgb(250, 170, 120) !Important;
+}
+
+.esri-feature-table .ui-state-active:hover
+{
+    background-color: rgb(250, 160, 100) !Important;
+} 
+
 .field-OBJECTID, .field-GEOID
 {
     width: 47px !important;
