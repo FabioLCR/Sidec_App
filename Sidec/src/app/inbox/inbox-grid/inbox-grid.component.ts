@@ -1,12 +1,12 @@
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
-import { MockServerResultsService } from '../../services/inbox/mock-server-results.service';
-import { Page } from '../../services/inbox/model/page';
-import { CorporateEmployee } from '../../services/inbox/model/corporate-employee';
+import { InboxServerResultsService } from '../../services/esri/inbox-server-results.service';
+import { Page } from '../../services/model/page';
+import { InboxData } from '../../services/model/inbox-data'
 
 @Component({
   selector: 'app-inbox-grid',
   providers: [
-      MockServerResultsService
+    InboxServerResultsService
   ],
   templateUrl: './inbox-grid.component.html',
   encapsulation: ViewEncapsulation.None,
@@ -15,10 +15,10 @@ import { CorporateEmployee } from '../../services/inbox/model/corporate-employee
 export class InboxGridComponent implements OnInit {
 
   page = new Page();
-  rows = new Array<CorporateEmployee>();
+  rows = new Array<InboxData>();
 
   //Para ServerSide é usado um serviço no construtor
-  constructor(private serverResultsService: MockServerResultsService) {
+  constructor(private serverResultsService: InboxServerResultsService) {
     this.page.pageNumber = 0;
     this.page.size = 10;
     //Client Side

@@ -14,43 +14,85 @@
   </ngx-datatable> -->
 
   <ngx-datatable class="bootstrap" 
-  [rows]="rows" 
-  [columnMode]="'force'"
-  [headerHeight]="50"
-  [footerHeight]="50"
-  [rowHeight]="'auto'"
-  [externalPaging]="true"
-  [count]="page.totalElements"
-  [offset]="page.pageNumber"
-  [limit]="page.size"
-  (page)='setPage($event)'>
+    [rows]="rows" 
+    [columnMode]="'force'" 
+    [headerHeight]="50" 
+    [footerHeight]="50" 
+    [rowHeight]="'auto'"
+    [externalPaging]="true" 
+    [count]="page.totalElements" 
+    [offset]="page.pageNumber" 
+    [limit]="page.size" 
+    (page)='setPage($event)'>
 
+    
+    <ngx-datatable-column name="Solicitacao">
+      <ng-template let-column="column" ngx-datatable-header-template>
+          Solicitação
+      </ng-template>
 
-    <ngx-datatable-column name="Name">
       <ng-template let-value="value" ngx-datatable-cell-template>
         <strong>{{value}}</strong>
       </ng-template>
     </ngx-datatable-column>
-
-    <ngx-datatable-column name="Gender">
-      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-        My name is:
-        <i [innerHTML]="row['name']"></i> and
-        <i>{{value}}</i>
+    
+    <ngx-datatable-column name="Data">
+      <ng-template let-value="value" ngx-datatable-cell-template>
+        {{value}}
       </ng-template>
     </ngx-datatable-column>
+    
+    <ngx-datatable-column name="Cobrade">
+      <ng-template let-column="column" ngx-datatable-header-template>
+        COBRADE
+      </ng-template>
 
-    <ngx-datatable-column name="Age">
+      <ng-template let-value="value" ngx-datatable-cell-template>
+        {{value}}
+      </ng-template>
+    </ngx-datatable-column>
+    
+    <ngx-datatable-column name="Motivo_alegado">
+      <ng-template let-column="column" ngx-datatable-header-template>
+        Motivo Alegado
+      </ng-template>
+
+      <ng-template let-value="value" ngx-datatable-cell-template>
+        {{value}}
+      </ng-template>
+    </ngx-datatable-column>
+    
+    <ngx-datatable-column name="Solicitante">
+      <ng-template let-value="value" ngx-datatable-cell-template>
+        {{value}}
+      </ng-template>
+    </ngx-datatable-column>
+    
+    <ngx-datatable-column name="Situacao">
+      <ng-template let-column="column" ngx-datatable-header-template>
+        Situação
+      </ng-template>
+
+      <ng-template let-value="value" ngx-datatable-cell-template>
+        {{value}}
+      </ng-template>
+    </ngx-datatable-column>
+    
+    <ngx-datatable-column name="Etapa">
       <ng-template let-value="value" ngx-datatable-cell-template>
         {{value}}
       </ng-template>
     </ngx-datatable-column>
 
-    <ngx-datatable-column class="GridIcons" name="Pesquisar" [resizeable]="false" [sortable]="false" [canAutoResize]="false"  [width]="80">
+    <ngx-datatable-column class="GridIcons" name="Pesquisar" 
+      [resizeable]="false" 
+      [sortable]="false" 
+      [canAutoResize]="false"
+      [width]="80">
       <ng-template let-column="column" ngx-datatable-header-template></ng-template>
 
       <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
-        <app-inbox-descricao-solicitacao class="GridIcons" [value]="row['name']"></app-inbox-descricao-solicitacao>
+        <app-inbox-descricao-solicitacao class="GridIcons" [value]="row['solicitacao']"></app-inbox-descricao-solicitacao>
         <a class="GridIcons" routerLink="NovaSolicitacao">
           <span class="glyphicon glyphicon-pencil"></span>
         </a>
