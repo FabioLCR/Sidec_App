@@ -52,32 +52,39 @@ export class InboxServerResultsService {
         ([FeatureLayer, on, parser, Query, Deferred]) => {
           parser.parse();
 
-          // look for credentials in local storage
-          // loadCredentials();
-
-          var featureLayer = new FeatureLayer("http://noteimg423.img.local/arcgis/rest/services/DESENV/SIDEC/FeatureServer/0", {
+          var featureLayer = new FeatureLayer("http://noteimg423.img.local/arcgis/rest/services/DESENV/SIDEC/FeatureServer/2", {
             mode: FeatureLayer.MODE_AUTO,
             "outFields": ["*"]
           });
 
           featureLayer.setDefinitionExpression("1=1");
-          getFeatureCnt().then((evt) => {
-            page.totalElements = companyData.length;//evt;
+          getFeatureCnt().then((len) => {
+            page.totalElements = len;
             page.totalPages = page.totalElements / page.size;
             let start = page.pageNumber * page.size;
+            //Preencher os registros da página;
             let end = Math.min((start + page.size), page.totalElements);
-            for (let i = start; i < end; i++) {
-              let jsonObj = companyData[i];
-              //let employee = new InboxData(jsonObj.name, jsonObj.gender, jsonObj.company, jsonObj.age);
-              //pagedData.data.push(employee);
-              pagedData.page = page;
-            }
+            getFeatureData().then((data) => {
+              data.features[2].attr().attributes["tx_nmsolicitante"]
+              for (let i = start; i < end; i++) {
+                let inboxData = new InboxData(
+                  data.features[i].attr().attributes["li_nsolicitacao"],
+                  data.features[i].attr().attributes["dt_dtinbox"],
+                  data.features[i].attr().attributes["li_cobrade"],
+                  data.features[i].attr().attributes["tx_motalegado"],
+                  data.features[i].attr().attributes["tx_nmsolicitante"],
+                  data.features[i].attr().attributes["li_situacao"],
+                  data.features[i].attr().attributes["li_etapa"]                  
+                );
+                //let employee = new InboxData(jsonObj.name, jsonObj.gender, jsonObj.company, jsonObj.age);
+                pagedData.data.push(inboxData);
+                pagedData.page = page;
+                
+              }
+              this.subject.next(pagedData);
+            });
             
-            pagedData.data = [...pagedData.data]
-            this.subject.next(pagedData);
-            //return pagedData;
-          }).then(() => {
-            //sem = true;
+
           });
 
           function getFeatureCnt() {
@@ -89,14 +96,18 @@ export class InboxServerResultsService {
             });
             return def;
           }
+
+          function getFeatureData() {
+            var query = new Query();
+            query.where = featureLayer.getDefinitionExpression();
+            var def = new Deferred();
+            featureLayer.queryFeatures(query, function (data) {
+              def.resolve(data);
+            });
+            return def;
+          }
         });
         
-
-          //httpBackend.flush();
-          //expect(sem).toBe(true);
-  
-     
-    //sem = false;
     return pagedData;
   }
 }

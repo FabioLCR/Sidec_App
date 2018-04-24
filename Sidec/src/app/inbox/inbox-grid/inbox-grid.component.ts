@@ -16,11 +16,13 @@ export class InboxGridComponent implements OnInit {
 
   page = new Page();
   rows = new Array<InboxData>();
+  loadingIndicator: boolean = true;
 
   //Para ServerSide é usado um serviço no construtor
   constructor(private serverResultsService: InboxServerResultsService) {
     this.page.pageNumber = 0;
     this.page.size = 10;
+    setTimeout(() => { this.loadingIndicator = true; }, 1500);
     //Client Side
     // this.fetch((data) => {
     //   this.rows = data
@@ -40,6 +42,7 @@ export class InboxGridComponent implements OnInit {
     this.serverResultsService.getResults(this.page).subscribe(pagedData => {
       this.page = pagedData.page;
       this.rows = pagedData.data;
+      this.loadingIndicator = true;
     });
   }
 
