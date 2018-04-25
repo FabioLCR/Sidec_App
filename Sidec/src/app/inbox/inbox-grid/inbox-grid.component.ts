@@ -1,7 +1,11 @@
-import { Component, ViewEncapsulation, OnInit } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit, ViewChild } from '@angular/core';
 import { InboxServerResultsService } from '../../services/esri/inbox-server-results.service';
 import { Page } from '../../services/model/page';
 import { InboxData } from '../../services/model/inbox-data'
+import { DatatableComponent } from '@swimlane/ngx-datatable';
+
+
+declare var $: any;
 
 @Component({
   selector: 'app-inbox-grid',
@@ -12,21 +16,41 @@ import { InboxData } from '../../services/model/inbox-data'
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['./inbox-grid.component.css']
 })
+
 export class InboxGridComponent implements OnInit {
+  loadingIndicator: boolean = true;
 
   page = new Page();
   rows = new Array<InboxData>();
-  loadingIndicator: boolean = true;
+  
 
   //Para ServerSide é usado um serviço no construtor
   constructor(private serverResultsService: InboxServerResultsService) {
     this.page.pageNumber = 0;
     this.page.size = 10;
-    setTimeout(() => { this.loadingIndicator = true; }, 1500);
+    
     //Client Side
     // this.fetch((data) => {
     //   this.rows = data
     // });
+  }
+
+
+
+  @ViewChild('tableWrapper') tableWrapper;
+  @ViewChild(DatatableComponent) table : DatatableComponent
+
+   private currentComponentWidth;
+
+
+  ngAfterViewChecked() {
+    
+    //Check if the table size has changed,
+    if (this.table && this.table.recalculate && 
+      (this.tableWrapper.nativeElement.clientWidth !== this.currentComponentWidth)) {
+      this.currentComponentWidth = this.tableWrapper.nativeElement.clientWidth;
+      this.table.recalculate();
+    }
   }
 
   ngOnInit() {
@@ -38,12 +62,19 @@ export class InboxGridComponent implements OnInit {
    * @param page The page to select
    */
   setPage(pageInfo){
+    this.loadingIndicator = true;
     this.page.pageNumber = pageInfo.offset;
     this.serverResultsService.getResults(this.page).subscribe(pagedData => {
       this.page = pagedData.page;
       this.rows = pagedData.data;
-      this.loadingIndicator = true;
+      
+      setTimeout(() => {
+        this.loadingIndicator = false;
+        this.rows = [...this.rows];
+      }, 200);
     });
+    
+    
   }
 
   // Esta responsabilidade foi para o serviço

@@ -6,6 +6,7 @@ import { Page } from "../model/page";
 const companyData = require('../../../assets/data/company.json');
 
 import esriLoader from 'esri-loader'
+import { DatatableComponent } from "@swimlane/ngx-datatable";
 
 const options = {
   url: 'https://js.arcgis.com/3.23/',
@@ -49,7 +50,7 @@ export class InboxServerResultsService {
         "esri/tasks/query",
         "dojo/Deferred",
       ]).then(
-        ([FeatureLayer, on, parser, Query, Deferred]) => {
+        ([FeatureLayer, on, parser, Query, Deferred] ) => {
           parser.parse();
 
           var featureLayer = new FeatureLayer("http://noteimg423.img.local/arcgis/rest/services/DESENV/SIDEC/FeatureServer/2", {
@@ -78,10 +79,12 @@ export class InboxServerResultsService {
                 );
                 //let employee = new InboxData(jsonObj.name, jsonObj.gender, jsonObj.company, jsonObj.age);
                 pagedData.data.push(inboxData);
-                pagedData.page = page;
-                
+                pagedData.page = page;                
               }
-              this.subject.next(pagedData);
+              //setTimeout(() => {
+                this.subject.next(pagedData);  
+              //}, 1000);
+              
             });
             
 
