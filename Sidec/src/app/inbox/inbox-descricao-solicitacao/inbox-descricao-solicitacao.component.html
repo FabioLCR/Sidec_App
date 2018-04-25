@@ -21,6 +21,8 @@
   
 </ng-template>
 
+
 <a class="" (click)="open(content)">
-  <span class="glyphicon glyphicon-search"></span>
+    <span *ngIf="useIcon" class="glyphicon glyphicon-search"></span>
+    <span *ngIf="!useIcon" style="font-weight:bold">{{value}}</span>
 </a>

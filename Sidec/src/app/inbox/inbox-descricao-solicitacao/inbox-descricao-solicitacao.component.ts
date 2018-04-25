@@ -10,7 +10,9 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 export class InboxDescricaoSolicitacaoComponent implements OnInit {
   closeResult: string;
   @Input() value;
-  
+  @Input() useIcon?: boolean;
+
+
   constructor(private modalService: NgbModal) {}
 
   open(content){

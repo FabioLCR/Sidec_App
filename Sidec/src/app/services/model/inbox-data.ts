@@ -3,7 +3,7 @@
  */
 export class InboxData {
     solicitacao: number;
-    data: Date;
+    data: string;
     cobrade: string;
     motivo_alegado: string;
     solicitante: string;
@@ -19,7 +19,7 @@ export class InboxData {
                 etapa: string) {
 
         this.solicitacao = solicitacao;
-        this.data = data;
+        this.data = data.toLocaleString();
         this.cobrade = cobrade;
         this.motivo_alegado = motivo_alegado;
         this.solicitante = solicitante;

@@ -42,22 +42,25 @@ export class InboxServerResultsService {
     //Aqui é onde vai olhar o serviço de acordo com a página
     let pagedData = new PagedData<InboxData>();
 
-    
     esriLoader.loadModules(
       ["esri/layers/FeatureLayer",
+        "esri/InfoTemplate",
         "dojo/on",
         "dojo/parser",
         "esri/tasks/query",
         "dojo/Deferred",
       ]).then(
-        ([FeatureLayer, on, parser, Query, Deferred] ) => {
+        ([FeatureLayer, InfoTemplate, on, parser, Query, Deferred] ) => {
           parser.parse();
 
           var featureLayer = new FeatureLayer("http://noteimg423.img.local/arcgis/rest/services/DESENV/SIDEC/FeatureServer/2", {
             mode: FeatureLayer.MODE_AUTO,
+            "orderByFields" : [ "dt_dtinbox DESC" ],
             "outFields": ["*"]
           });
-
+          
+          
+          
           featureLayer.setDefinitionExpression("1=1");
           getFeatureCnt().then((len) => {
             page.totalElements = len;
@@ -65,12 +68,16 @@ export class InboxServerResultsService {
             let start = page.pageNumber * page.size;
             //Preencher os registros da página;
             let end = Math.min((start + page.size), page.totalElements);
-            getFeatureData().then((data) => {
-              data.features[2].attr().attributes["tx_nmsolicitante"]
-              for (let i = start; i < end; i++) {
+
+            getFeatureData(start, page.size).then((data) => {
+              
+              for (let i = 0; i < data.features.length; i++) {
+                var dataAttr = new Date(  data.features[i].attr().attributes["dt_dtinbox"] )
+                dataAttr = new Date(dataAttr.getTime() + dataAttr.getTimezoneOffset() * 60000);
+                
                 let inboxData = new InboxData(
                   data.features[i].attr().attributes["li_nsolicitacao"],
-                  data.features[i].attr().attributes["dt_dtinbox"],
+                  dataAttr,
                   data.features[i].attr().attributes["li_cobrade"],
                   data.features[i].attr().attributes["tx_motalegado"],
                   data.features[i].attr().attributes["tx_nmsolicitante"],
@@ -100,9 +107,11 @@ export class InboxServerResultsService {
             return def;
           }
 
-          function getFeatureData() {
+          function getFeatureData(start, num) {
             var query = new Query();
             query.where = featureLayer.getDefinitionExpression();
+            query.start = start;
+            query.num = num;
             var def = new Deferred();
             featureLayer.queryFeatures(query, function (data) {
               def.resolve(data);

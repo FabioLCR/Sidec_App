@@ -25,16 +25,14 @@
     [count]="page.totalElements" 
     [offset]="page.pageNumber" 
     [limit]="page.size" 
+    (sort)="onSort($event)"
     (page)='setPage($event)'>
 
     
-    <ngx-datatable-column name="Solicitacao" [minWidth]=80 class="teste">
-      <ng-template let-column="column" ngx-datatable-header-template>
-          Solicitação
-      </ng-template>
-
+    <ngx-datatable-column name="Solicitação" prop="solicitacao"
+     [minWidth]=80 >
       <ng-template let-value="value" ngx-datatable-cell-template>
-        <strong>{{value}}</strong>
+          <app-inbox-descricao-solicitacao class="GridIcons" [useIcon]="false" [value]="value"></app-inbox-descricao-solicitacao>
       </ng-template>
     </ngx-datatable-column>
     
@@ -102,7 +100,7 @@
       </ng-template>
 
       <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex"  let-row="row">
-        <app-inbox-descricao-solicitacao class="GridIcons" [value]="row['solicitacao']"></app-inbox-descricao-solicitacao>
+        <app-inbox-descricao-solicitacao class="GridIcons" [useIcon]="true" [value]="row['solicitacao']"></app-inbox-descricao-solicitacao>
         <a class="GridIcons" routerLink="NovaSolicitacao">
           <span class="glyphicon glyphicon-pencil"></span>
         </a>

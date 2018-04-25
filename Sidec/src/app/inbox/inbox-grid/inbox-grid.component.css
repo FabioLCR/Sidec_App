@@ -10,6 +10,13 @@ datatable-body-row.datatable-body-row:hover{
 }
 
 
+datatable-body-row.datatable-body-row {
+    display: inline-table !important;
+}
+
+datatable-scroller.datatable-scroll {
+    width: 100% !important;
+}
  /* .datatable-body-row{
     width: 100% !important;
 }   */
@@ -22,6 +29,12 @@ datatable-body-row.datatable-body-row:hover{
     margin: 0;
     position: absolute;
 }
+
+
+
+/* datatable-scroller.datatable-scroll {
+    width: auto !important;
+} */
 
 .datatable-body .progress-linear .container {
     display: block;

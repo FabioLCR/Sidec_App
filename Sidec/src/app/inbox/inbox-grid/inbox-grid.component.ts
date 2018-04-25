@@ -22,13 +22,13 @@ export class InboxGridComponent implements OnInit {
 
   page = new Page();
   rows = new Array<InboxData>();
-  
+
 
   //Para ServerSide é usado um serviço no construtor
   constructor(private serverResultsService: InboxServerResultsService) {
     this.page.pageNumber = 0;
     this.page.size = 10;
-    
+
     //Client Side
     // this.fetch((data) => {
     //   this.rows = data
@@ -36,21 +36,23 @@ export class InboxGridComponent implements OnInit {
   }
 
 
-
   @ViewChild('tableWrapper') tableWrapper;
-  @ViewChild(DatatableComponent) table : DatatableComponent
+  @ViewChild(DatatableComponent) table: DatatableComponent
 
-   private currentComponentWidth;
-
+  private currentComponentWidth;
 
   ngAfterViewChecked() {
-    
     //Check if the table size has changed,
-    if (this.table && this.table.recalculate && 
-      (this.tableWrapper.nativeElement.clientWidth !== this.currentComponentWidth)) {
-      this.currentComponentWidth = this.tableWrapper.nativeElement.clientWidth;
-      this.table.recalculate();
+    if (this.table && this.table.recalculate) {
+      if (this.tableWrapper.nativeElement.clientWidth !== this.currentComponentWidth) {
+        this.currentComponentWidth = this.tableWrapper.nativeElement.clientWidth;
+        this.table.recalculate();
+      }
+      if (this.table.offset !== this.page.pageNumber) {
+        this.table.offset = this.page.pageNumber;
+      }
     }
+
   }
 
   ngOnInit() {
@@ -61,22 +63,27 @@ export class InboxGridComponent implements OnInit {
    * Populate the table with new data based on the page number
    * @param page The page to select
    */
-  setPage(pageInfo){
+  setPage(pageInfo) {
     this.loadingIndicator = true;
     this.page.pageNumber = pageInfo.offset;
     this.serverResultsService.getResults(this.page).subscribe(pagedData => {
       this.page = pagedData.page;
       this.rows = pagedData.data;
-      
+
       setTimeout(() => {
         this.loadingIndicator = false;
         this.rows = [...this.rows];
       }, 200);
     });
-    
-    
+
+
   }
 
+  onSort(sorts) {
+    if (this.table.offset !== this.page.pageNumber) {
+      this.table.offset = this.page.pageNumber;
+    }
+  }
   // Esta responsabilidade foi para o serviço
   // fetch(cb) {
   //   const req = new XMLHttpRequest();
@@ -89,6 +96,6 @@ export class InboxGridComponent implements OnInit {
   //   req.send();
   // }
 
-  
+
 
 }
