@@ -69,11 +69,14 @@ export class InboxGridComponent implements OnInit {
     this.serverResultsService.getResults(this.page).subscribe(pagedData => {
       this.page = pagedData.page;
       this.rows = pagedData.data;
+      this.rows = [...this.rows];
 
-      setTimeout(() => {
+      for (let tout = 0; tout < 500; tout+=10) {
         this.loadingIndicator = false;
-        this.rows = [...this.rows];
-      }, 200);
+        setTimeout(() => {
+          this.rows = [...this.rows];
+        }, tout);
+      }
     });
 
 
