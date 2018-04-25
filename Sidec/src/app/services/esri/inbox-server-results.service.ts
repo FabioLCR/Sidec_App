@@ -34,9 +34,9 @@ export class InboxServerResultsService {
   }
 
   /**
-   * Package companyData into a PagedData object based on the selected Page
-   * @param page The page data used to get the selected data from companyData
-   * @returns {PagedData<CorporateEmployee>} An array of the selected data and page
+   * Package inboxData into a InboxData object based on the selected Page
+   * @param page The page data used to get the selected data from inboxData
+   * @returns {PagedData<InboxData>} An array of the selected data and page
    */
   private getPagedData(page: Page): PagedData<InboxData> {
     //Aqui é onde vai olhar o serviço de acordo com a página
@@ -67,7 +67,7 @@ export class InboxServerResultsService {
             page.totalPages = page.totalElements / page.size;
             let start = page.pageNumber * page.size;
             //Preencher os registros da página;
-            let end = Math.min((start + page.size), page.totalElements);
+            //let end = Math.min((start + page.size), page.totalElements);
 
             getFeatureData(start, page.size).then((data) => {
               
