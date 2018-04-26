@@ -71,9 +71,11 @@ export class InboxGridComponent implements OnInit {
       this.rows = pagedData.data;
       this.rows = [...this.rows];
 
-      for (let tout = 0; tout < 500; tout+=10) {
+      //para garantir o bom dimensionamento do Grid o quanto antes após o carregamento
+      for (let tout = 0; tout < 500; tout += 10) {
         this.loadingIndicator = false;
         setTimeout(() => {
+          //Dispara o evento que organiza o grid
           this.rows = [...this.rows];
         }, tout);
       }
