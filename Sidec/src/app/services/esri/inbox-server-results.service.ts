@@ -3,14 +3,13 @@ import { Observable, Subject } from "rxjs";
 import { PagedData } from "../model/paged-data";
 import { InboxData } from '../model/inbox-data'
 import { Page } from "../model/page";
-const companyData = require('../../../assets/data/company.json');
 
 import esriLoader from 'esri-loader'
 import { DatatableComponent } from "@swimlane/ngx-datatable";
 
 const options = {
-  url: 'https://js.arcgis.com/3.23/',
-  css: 'https://js.arcgis.com/4.6/esri/css/main.css'
+  url: 'https://js.arcgis.com/4.7/',
+  css: 'https://js.arcgis.com/4.7/esri/css/main.css'
 };
 
 @Injectable()
@@ -19,7 +18,9 @@ export class InboxServerResultsService {
   private subject: Subject<PagedData<InboxData>>;
 
   constructor() {
-    esriLoader.loadScript(options);
+    if (!esriLoader.isLoaded()) {
+      esriLoader.loadScript(options);
+    }
     this.subject = new Subject<PagedData<InboxData>>();
   }
 
@@ -44,47 +45,43 @@ export class InboxServerResultsService {
 
     esriLoader.loadModules(
       ["esri/layers/FeatureLayer",
-        "esri/InfoTemplate",
-        "dojo/on",
-        "dojo/parser",
-        "esri/tasks/query",
-        "dojo/Deferred",
+       "esri/tasks/QueryTask",
+       "esri/tasks/support/Query",
       ]).then(
-        ([FeatureLayer, InfoTemplate, on, parser, Query, Deferred] ) => {
-          parser.parse();
+        ([FeatureLayer, QueryTask, Query] ) => {
 
-          var featureLayer = new FeatureLayer("http://noteimg423.img.local/arcgis/rest/services/DESENV/SIDEC/FeatureServer/2", {
-            mode: FeatureLayer.MODE_AUTO,
-            "orderByFields" : [ "dt_dtinbox DESC" ],
-            "outFields": ["*"]
+          var queryTask = new QueryTask({
+            url: "http://noteimg423.img.local/arcgis/rest/services/DESENV/SIDEC/FeatureServer/2",
           });
-          
-          
-          
-          featureLayer.setDefinitionExpression("1=1");
-          getFeatureCnt().then((len) => {
-            page.totalElements = len;
+          var query = new Query({
+            orderByFields: [ "dt_dtinbox DESC" ],
+            outFields: ["*"],
+            where: "1=1"
+          });
+
+          queryTask.executeForCount(query).then((count) => {
+            page.totalElements = count;
             page.totalPages = page.totalElements / page.size;
-            let start = page.pageNumber * page.size;
             //Preencher os registros da página;
             //let end = Math.min((start + page.size), page.totalElements);
-
-            getFeatureData(start, page.size).then((data) => {
+            query.start = page.pageNumber * page.size;
+            query.num = page.size;
+            
+            queryTask.execute(query).then((data) => {
               
               for (let i = 0; i < data.features.length; i++) {
-                var dataAttr = new Date(  data.features[i].attr().attributes["dt_dtinbox"] )
+                var dataAttr = new Date(  data.features[i].attributes.dt_dtinbox )
                 dataAttr = new Date(dataAttr.getTime() + dataAttr.getTimezoneOffset() * 60000);
                 
                 let inboxData = new InboxData(
-                  data.features[i].attr().attributes["li_nsolicitacao"],
+                  data.features[i].attributes.li_nsolicitacao,
                   dataAttr,
-                  data.features[i].attr().attributes["li_cobrade"],
-                  data.features[i].attr().attributes["tx_motalegado"],
-                  data.features[i].attr().attributes["tx_nmsolicitante"],
-                  data.features[i].attr().attributes["li_situacao"],
-                  data.features[i].attr().attributes["li_etapa"]                  
+                  data.features[i].attributes.li_cobrade,
+                  data.features[i].attributes.tx_motalegado,
+                  data.features[i].attributes.tx_nmsolicitante,
+                  data.features[i].attributes.li_situacao,
+                  data.features[i].attributes.li_etapa                 
                 );
-                //let employee = new InboxData(jsonObj.name, jsonObj.gender, jsonObj.company, jsonObj.age);
                 pagedData.data.push(inboxData);
                 pagedData.page = page;                
               }
@@ -96,28 +93,6 @@ export class InboxServerResultsService {
             
 
           });
-
-          function getFeatureCnt() {
-            var query = new Query();
-            query.where = featureLayer.getDefinitionExpression();
-            var def = new Deferred();
-            featureLayer.queryCount(query, function (count) {
-              def.resolve(count);
-            });
-            return def;
-          }
-
-          function getFeatureData(start, num) {
-            var query = new Query();
-            query.where = featureLayer.getDefinitionExpression();
-            query.start = start;
-            query.num = num;
-            var def = new Deferred();
-            featureLayer.queryFeatures(query, function (data) {
-              def.resolve(data);
-            });
-            return def;
-          }
         });
         
     return pagedData;
