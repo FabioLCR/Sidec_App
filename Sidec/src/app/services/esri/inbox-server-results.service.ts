@@ -47,6 +47,7 @@ export class InboxServerResultsService {
       ["esri/layers/FeatureLayer",
        "esri/tasks/QueryTask",
        "esri/tasks/support/Query",
+       "dojo/domReady!"
       ]).then(
         ([FeatureLayer, QueryTask, Query] ) => {
 
@@ -87,8 +88,7 @@ export class InboxServerResultsService {
               }
               //setTimeout(() => {
                 this.subject.next(pagedData);  
-              //}, 1000);
-              
+              //}, 10);
             });
             
 

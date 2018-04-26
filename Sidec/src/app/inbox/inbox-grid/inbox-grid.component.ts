@@ -77,6 +77,7 @@ export class InboxGridComponent implements OnInit {
         setTimeout(() => {
           //Dispara o evento que organiza o grid
           this.rows = [...this.rows];
+          this.table.recalculate();
         }, tout);
       }
     });
@@ -84,6 +85,7 @@ export class InboxGridComponent implements OnInit {
 
   }
 
+  //Necessário para corrigir um bug na exibição da página atual após o sort
   onSort(sorts) {
     if (this.table.offset !== this.page.pageNumber) {
       this.table.offset = this.page.pageNumber;

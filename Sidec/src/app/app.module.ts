@@ -21,7 +21,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { HeadingComponent } from './heading/heading.component';
 import { InboxGridComponent } from './inbox/inbox-grid/inbox-grid.component';
 import { InboxDescricaoSolicitacaoComponent } from './inbox/inbox-descricao-solicitacao/inbox-descricao-solicitacao.component';
-import { SidecDomainsService } from './services/esri/sidec-domains.service';
+import { SidecDomains } from './services/esri/sidec-domains.service';
 
 @NgModule({
   declarations: [
@@ -52,12 +52,12 @@ import { SidecDomainsService } from './services/esri/sidec-domains.service';
     },
     [I18n, { provide: NgbDatepickerI18n, useClass: CustomDatepickerI18n }],
     [{provide: NgbDateParserFormatter, useClass: NgbDatePTParserFormatter}],
-    SidecDomainsService
+    SidecDomains
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { 
-  constructor(private sDom: SidecDomainsService) { 
+  constructor(private sDom: SidecDomains) { 
     sDom.initialize();
   }
   

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { KeycloakService } from 'keycloak-angular';
-import { SidecDomainsService } from '../services/esri/sidec-domains.service';
+import { SidecDomains } from '../services/esri/sidec-domains.service';
 
 @Component({
   selector: 'app-heading',
