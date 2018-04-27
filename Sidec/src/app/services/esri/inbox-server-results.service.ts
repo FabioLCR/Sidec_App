@@ -71,12 +71,9 @@ export class InboxServerResultsService {
             queryTask.execute(query).then((data) => {
               
               for (let i = 0; i < data.features.length; i++) {
-                var dataAttr = new Date(  data.features[i].attributes.dt_dtinbox )
-                dataAttr = new Date(dataAttr.getTime() + dataAttr.getTimezoneOffset() * 60000);
-                
                 let inboxData = new InboxData(
                   data.features[i].attributes.li_nsolicitacao,
-                  dataAttr,
+                  data.features[i].attributes.dt_dtinbox,
                   data.features[i].attributes.li_cobrade,
                   data.features[i].attributes.tx_motalegado,
                   data.features[i].attributes.tx_nmsolicitante,

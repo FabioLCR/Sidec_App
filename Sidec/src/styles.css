@@ -79,3 +79,11 @@
     /* bug fix - no overlay */    
     /* display: none !important;     */
 /* } */
+
+.modal-content {
+    max-height: calc( 100vh - 15px );
+}
+
+.modal-body {
+    overflow: auto;
+}

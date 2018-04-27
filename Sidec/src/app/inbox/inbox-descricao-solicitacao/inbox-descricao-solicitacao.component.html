@@ -1,7 +1,7 @@
 <ng-template #content let-c="close" let-d="dismiss">
   <div class="modal-header">
 
-    <h4 class="modal-title">Modal title</h4>
+    <h4 class="modal-title">Solicitação: {{value}}</h4>
 
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
       <span aria-hidden="true">&times;</span>
@@ -9,20 +9,43 @@
 
   </div>
 
-
   <div class="modal-body">
-    {{value}}
-  </div>
+    <form>
+      <div class="form-row">
 
+        <div class="col-md-3">
+          <div class="form-group row">
+            <label for="staticData" class="col-form-label font-weight-bold">Data:&nbsp;</label>
+            <label class="col-form-label" id="staticData">{{data}}</label>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="form-group row">
+            <label for="staticCobrade" class="col-form-label font-weight-bold">COBRADE:&nbsp;</label>
+            <label class="col-form-label" id="staticCobrade">{{cobrade}}</label>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label for="staticMotivo" class="col-form-label font-weight-bold">Motivo:&nbsp;</label>
+            <label class="col-form-label" id="staticMotivo">{{motivo}}</label>
+          </div>
+        </div>
+
+      </div>
+    </form>
+  </div>
 
   <div class="modal-footer">
-    <button type="button" class="btn btn-light" (click)="c('Close click')">Close</button>
+    <button type="button" class="btn btn-light" (click)="c('Close click')">Fechar</button>
   </div>
-  
+
 </ng-template>
 
 
 <a class="" (click)="open(content)">
-    <span *ngIf="useIcon" class="glyphicon glyphicon-search"></span>
-    <span *ngIf="!useIcon" style="font-weight:bold">{{value}}</span>
+  <span *ngIf="useIcon" class="glyphicon glyphicon-search"></span>
+  <span *ngIf="!useIcon" style="font-weight:bold">{{value}}</span>
 </a>
