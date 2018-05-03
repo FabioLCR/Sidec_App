@@ -1,7 +1,7 @@
 <ng-template #content let-c="close" let-d="dismiss">
   <div class="modal-header">
 
-    <h4 class="modal-title">Solicitação: {{value}}</h4>
+    <h4 class="modal-title">Solicitação: {{nsol}}</h4>
 
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
       <span aria-hidden="true">&times;</span>
@@ -9,29 +9,62 @@
 
   </div>
 
-  <div class="modal-body">
+  <div class=" modal-body">
     <form>
       <div class="form-row">
 
-        <div class="col-md-3">
-          <div class="form-group row">
+        <div class="form-group col-md-auto">
+          <div class="border rounded solPadding">
             <label for="staticData" class="col-form-label font-weight-bold">Data:&nbsp;</label>
             <label class="col-form-label" id="staticData">{{data}}</label>
           </div>
         </div>
 
-        <div class="col-md-3">
-          <div class="form-group row">
+        <div class="form-group col-md-auto">
+          <div class="border rounded solPadding">
             <label for="staticCobrade" class="col-form-label font-weight-bold">COBRADE:&nbsp;</label>
             <label class="col-form-label" id="staticCobrade">{{cobrade}}</label>
           </div>
         </div>
 
-        <div class="col-md-6">
-          <div class="form-group row">
+        <div class="form-group col-md-auto">
+          <div class="border rounded solPadding">
             <label for="staticMotivo" class="col-form-label font-weight-bold">Motivo:&nbsp;</label>
-            <label class="col-form-label" id="staticMotivo">{{motivo}}</label>
+            <label class="col-form-label" id="staticMotivo">{{motivo_alegado}}</label>
           </div>
+        </div>
+
+        <div class="form-group col-md-auto">
+          <div class="border rounded solPadding">
+            <label for="staticAgente" class="col-form-label font-weight-bold">Atendente/Agente:&nbsp;</label>
+            <label class="col-form-label" id="staticAgente">{{agente}}</label>
+          </div>
+        </div>
+
+        <div class="form-group col-md-auto">
+          <div class="border rounded solPadding">
+            <label for="staticSituacao" class="col-form-label font-weight-bold">Situação:&nbsp;</label>
+            <label class="col-form-label" id="staticSituacao">{{situacao}}</label>
+          </div>
+        </div>
+
+        <div class="form-group col-md-auto">
+          <div class="border rounded solPadding">
+            <label for="staticEtapa" class="col-form-label font-weight-bold">Etapa:&nbsp;</label>
+            <label class="col-form-label" id="staticEtapa">{{etapa}}</label>
+          </div>
+        </div>
+
+        <div class="form-group col-md-auto">
+          <div class="border rounded solPadding">
+            <label for="staticSolicitante" class="col-form-label font-weight-bold">Solicitante:&nbsp;</label>
+            <label class="col-form-label" id="staticSolicitante">{{solicitante}}</label>
+          </div>
+        </div>
+
+        <div class="form-group col-md-12">
+            <label for="staticEsclarecimento" class="col-form-label font-weight-bold">Esclarecimento:&nbsp;</label>
+            <label class="col-form-label" id="staticEsclarecimento">{{esclarecimento}}</label>
         </div>
 
       </div>
@@ -47,5 +80,5 @@
 
 <a class="" (click)="open(content)">
   <span *ngIf="useIcon" class="glyphicon glyphicon-search"></span>
-  <span *ngIf="!useIcon" style="font-weight:bold">{{value}}</span>
+  <span *ngIf="!useIcon" style="font-weight:bold">{{nsol}}</span>
 </a>

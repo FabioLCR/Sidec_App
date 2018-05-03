@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import esriLoader from 'esri-loader';
+import { debug } from 'util';
 
 const options = {
   url: 'https://js.arcgis.com/4.7/',
@@ -47,6 +48,7 @@ export class SidecDomains {
           var domains = response.data.domains;
           domains.forEach(domain => {
             codedValues = domain.codedValues
+           
             console.log(domain.name);
             switch (domain.name) {
               case 'DC_COBRADE':

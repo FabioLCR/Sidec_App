@@ -21,14 +21,16 @@ export class InboxGridComponent implements OnInit {
   loadingIndicator: boolean = true;
 
   page = new Page();
+  offset: number;
   rows = new Array<InboxData>();
-
+  paging = false;
 
   //Para ServerSide é usado um serviço no construtor
   constructor(private serverResultsService: InboxServerResultsService) {
     this.page.pageNumber = 0;
+    this.offset = 0;
     this.page.size = 10;
-
+    this.paging = false;
     //Client Side
     // this.fetch((data) => {
     //   this.rows = data
@@ -50,6 +52,7 @@ export class InboxGridComponent implements OnInit {
       }
       if (this.table.offset !== this.page.pageNumber) {
         this.table.offset = this.page.pageNumber;
+        this.paging = false;
       }
     }
 
@@ -64,25 +67,36 @@ export class InboxGridComponent implements OnInit {
    * @param page The page to select
    */
   setPage(pageInfo) {
-    this.loadingIndicator = true;
-    this.page.pageNumber = pageInfo.offset;
-    this.serverResultsService.getResults(this.page).subscribe(pagedData => {
-      this.page = pagedData.page;
-      this.rows = pagedData.data;
-      this.rows = [...this.rows];
+    if (!this.paging) {
+      this.paging = true;
+      this.loadingIndicator = true;
+      this.page.pageNumber = pageInfo.offset;
+      this.serverResultsService.getResults(this.page).subscribe(pagedData => {
+        this.page = pagedData.page;
+        this.rows = pagedData.data;
+        this.rows = [...this.rows];
+        // reset page
+        this.table.bodyComponent.updateOffsetY(this.page.pageNumber);
+        this.table.offset = this.page.pageNumber;
+        this.table.recalculate();
+        //para garantir o bom dimensionamento do Grid o quanto antes após o carregamento
+        for (let tout = 0; tout < 500; tout += 10) {
+          this.loadingIndicator = false;
+          
+          setTimeout(() => {
+            this.paging = false;
+            
+            //Dispara o evento que organiza o grid
+            this.rows = [...this.rows];
+            // reset page
+            // this.table.bodyComponent.updateOffsetY(this.page.pageNumber);
+            // this.table.offset = this.page.pageNumber;
+            // this.table.recalculate();
+          }, tout);
+        }
+      });
 
-      //para garantir o bom dimensionamento do Grid o quanto antes após o carregamento
-      for (let tout = 0; tout < 500; tout += 10) {
-        this.loadingIndicator = false;
-        setTimeout(() => {
-          //Dispara o evento que organiza o grid
-          this.rows = [...this.rows];
-          this.table.recalculate();
-        }, tout);
-      }
-    });
-
-
+    }
   }
 
   //Necessário para corrigir um bug na exibição da página atual após o sort
