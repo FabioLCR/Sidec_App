@@ -14,11 +14,7 @@
             <label for="StatusSearchInput">ETAPA:</label>
             <select class="form-control" id="StatusSearchInput">
                 <option>Todas</option>
-                <option>Agendamento</option>
-                <option>Vistoria</option>
-                <option>Revisão</option>
-                <option>Pronto</option>
-                <option>Administrativo</option>
+                <option *ngFor="let etapa of etapas" value={{etapa.code}}>{{etapa.name}}</option>
             </select>
         </div>
 

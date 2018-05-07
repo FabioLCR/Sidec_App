@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, Input, OnInit } from '@angular/core';
+import { Component, ViewEncapsulation, Input, OnInit, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { SidecDomains } from '../../services/esri/sidec-domains.service';
 import { SolicitacaoService } from '../../services/esri/solicitacao.service';
@@ -11,7 +11,7 @@ import { SolicitacaoData } from '../../services/model/solicitacao-data';
   ],
   templateUrl: './inbox-descricao-solicitacao.component.html',
   encapsulation: ViewEncapsulation.None,
-  styleUrls: ['./inbox-descricao-solicitacao.component.css']
+  styleUrls: ['./inbox-descricao-solicitacao.component.css'],
 })
 export class InboxDescricaoSolicitacaoComponent implements OnInit {
   closeResult: string;
@@ -27,10 +27,18 @@ export class InboxDescricaoSolicitacaoComponent implements OnInit {
   situacao = "";
   esclarecimento = "";
   solicitante = "";
-  constructor(private modalService: NgbModal, private solicitacao: SolicitacaoService) { }
+  constructor(private modalService: NgbModal, 
+    private solicitacao: SolicitacaoService,
+    private cd: ChangeDetectorRef) {
+      //this.cd.detach();
+     }
 
+
+  
   open(content) {
+    this.cd.reattach();
     this.modalService.open(content, { windowClass: 'light-slate-gray', size: 'lg' });
+    
     this.solicitacao.getByNSol(this.nsol).subscribe(sol => {
       this.data = sol.data.toLocaleDateString();
       this.cobrade = (sol.cobrade !== null) ? SidecDomains.DC_COBRADE.find(x => x.code === sol.cobrade).name : "";
@@ -39,16 +47,20 @@ export class InboxDescricaoSolicitacaoComponent implements OnInit {
       this.situacao = (sol.situacao !== null) ? SidecDomains.DC_SITUACAO.find(x => x.code === sol.situacao).name : "";
       this.esclarecimento = (sol.esclarecimento !== null) ? sol.esclarecimento : "";
       this.solicitante = (sol.solicitante !== null) ? sol.solicitante : "";
-      
+     
+      //this.cd.detectChanges();
     });
-
+    
 
 
     //SolicitacaoData = this.solicitacao.getByNSol(this.nsol);
   }
 
   ngOnInit() {
-
+    //this.cd.reattach();
   }
 
+  refresh() {
+    //this.cd.detach();
+  }
 }
