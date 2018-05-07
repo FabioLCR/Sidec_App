@@ -36,7 +36,7 @@ export class InboxDescricaoSolicitacaoComponent implements OnInit {
 
   
   open(content) {
-    this.cd.reattach();
+    //this.cd.reattach();
     this.modalService.open(content, { windowClass: 'light-slate-gray', size: 'lg' });
     
     this.solicitacao.getByNSol(this.nsol).subscribe(sol => {

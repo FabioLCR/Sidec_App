@@ -93,22 +93,22 @@ export class InboxGridComponent implements OnInit {
             //Dispara o evento que organiza o grid
             this.table.recalculate();
             this.rows = [...this.rows];
-            this.cd.detectChanges();
+            //this.cd.detectChanges();
           }, tout);
         }
       });
   }
 
-  @HostListener('document:click', ['$event'])
-  clickout(event) {
-    if(this.eRef.nativeElement.contains(event.target)) {
-      setTimeout(() => {
-      this.cd.detectChanges();
+  // @HostListener('document:click', ['$event'])
+  // clickout(event) {
+  //   if(this.eRef.nativeElement.contains(event.target)) {
+  //     setTimeout(() => {
+  //     this.cd.detectChanges();
         
-      }, 1500);
-    }
+  //     }, 1500);
+  //   }
     
-  }
+  // }
   //Necessário para corrigir um bug na exibição da página atual após o sort
   onSort(sorts) {
     if (this.table.offset !== this.page.pageNumber) {

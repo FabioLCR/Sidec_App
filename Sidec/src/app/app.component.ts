@@ -11,7 +11,7 @@ var _domains;
   providers: [SidecDomains],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  changeDetection: ChangeDetectionStrategy.Default
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 
@@ -33,7 +33,7 @@ export class AppComponent implements OnInit{
     this.sd.initialize().subscribe(dName => {
       this.updateScreen(dName);
       this.domains = [...this.domains];
-      this.cd.detectChanges();
+      //this.cd.detectChanges();
     });
   }
 
