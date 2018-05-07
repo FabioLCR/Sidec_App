@@ -1,7 +1,24 @@
-<app-heading></app-heading>
+<div *ngIf="!initialized; then thenBlock; else elseBlock">this is ignored</div>
 
-<div style="height: 15px;"></div>
+<ng-template #thenBlock>
+    <p>Loading Domains...</p>
+    <ul>
+        <li *ngFor="let domain of domains">
+            {{domain}}
+        </li>
+    </ul>
+</ng-template>
 
-<div role="main" class="container-fluid">
-    <router-outlet></router-outlet>
-</div>
+<ng-template #elseBlock>
+    <app-heading></app-heading>
+
+    <div id="Main">
+        <div style="height: 15px;"></div>
+
+        <div role="main" class="container-fluid">
+            <router-outlet></router-outlet>
+        </div>
+
+        <div style="height: 15px;"></div>
+    </div>
+</ng-template>

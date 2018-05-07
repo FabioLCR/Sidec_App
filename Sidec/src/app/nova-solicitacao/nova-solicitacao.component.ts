@@ -6,11 +6,14 @@ import {Router, ActivatedRoute} from '@angular/router';
   templateUrl: './nova-solicitacao.component.html',
   styleUrls: ['./nova-solicitacao.component.css']
 })
+
 export class NovaSolicitacaoComponent implements OnInit {
 
   constructor() { }
 
+  
   ngOnInit() {
+    
   }
 
 }

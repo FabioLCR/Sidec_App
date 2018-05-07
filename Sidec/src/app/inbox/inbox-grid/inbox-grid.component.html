@@ -1,0 +1,117 @@
+<div class="table-wrapper" #tableWrapper>
+  <!-- <ngx-datatable
+    class="bootstrap"
+    [rows]="rows"
+    [loadingIndicator]="loadingIndicator"
+    [columns]="columns"
+    [columnMode]="'force'"
+    [headerHeight]="40"
+    [footerHeight]="40"
+    [limit]="10"
+    [rowHeight]="'auto'"
+    [reorderable]="reorderable"
+    [selectionType]="'single'">
+  </ngx-datatable> -->
+
+  <ngx-datatable #table class="bootstrap" 
+    [rows]="rows" 
+    [columnMode]="'force'" 
+    [loadingIndicator]="loadingIndicator" 
+    [headerHeight]="50"
+    [footerHeight]="35" 
+    [rowHeight]="'auto'" 
+    [externalPaging]="true" 
+    [scrollbarH]="true" 
+    [count]="page.totalElements" 
+    [offset]="page.pageNumber"
+    [limit]="page.size" 
+    (sort)="onSort($event)" 
+    (page)='setPage($event)'>
+
+
+    <ngx-datatable-column name="Solicitação" prop="solicitacao" [minWidth]=80>
+      <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
+         <app-inbox-descricao-solicitacao class="GridIcons" 
+          [useIcon]="false" 
+          [nsol]="value" 
+          [etapa]="row['etapa']">
+        </app-inbox-descricao-solicitacao> 
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="Data" [minWidth]=100>
+      <ng-template let-value="value" ngx-datatable-cell-template>
+        {{value}}
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="Cobrade">
+      <ng-template let-column="column" ngx-datatable-header-template>
+        COBRADE
+      </ng-template>
+
+      <ng-template let-value="value" ngx-datatable-cell-template>
+        {{value}}
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="Motivo_alegado">
+      <ng-template let-column="column" ngx-datatable-header-template>
+        Motivo Alegado
+      </ng-template>
+
+      <ng-template let-value="value" ngx-datatable-cell-template>
+        {{value}}
+      </ng-template>
+    </ngx-datatable-column>
+
+    <!-- <ngx-datatable-column name="Solicitante" [minWidth]=200>
+      <ng-template let-value="value" ngx-datatable-cell-template>
+        {{value}}
+      </ng-template>
+    </ngx-datatable-column> -->
+
+    <ngx-datatable-column name="Situacao" [minWidth]=150>
+      <ng-template let-column="column" ngx-datatable-header-template>
+        Situação
+      </ng-template>
+
+      <ng-template let-value="value" ngx-datatable-cell-template>
+        {{value}}
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="Etapa" prop="etapa" [minWidth]=100>
+      <ng-template let-value="value" ngx-datatable-cell-template>
+        {{value}}
+      </ng-template>
+    </ngx-datatable-column>
+    <!-- [resizeable]="false" 
+    [sortable]="false" 
+    [canAutoResize]="false"
+    [width]=80
+    [frozenRight]="True" -->
+    <ngx-datatable-column class="GridIcons" name="Pesquisar" 
+      [minWidth]=65 
+      [resizeable]="false" 
+      [sortable]="false" 
+      [canAutoResize]="false"
+      [width]=80 
+      [frozenRight]="True">
+      <ng-template ngx-datatable-header-template></ng-template>
+
+      <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
+        <app-inbox-descricao-solicitacao class="GridIcons" 
+          [useIcon]="true" 
+          [nsol]="row['solicitacao']" 
+          [etapa]="row['etapa']">
+        </app-inbox-descricao-solicitacao>
+        <a class="GridIcons" routerLink="NovaSolicitacao">
+          <span class="glyphicon glyphicon-pencil"></span>
+        </a>
+      </ng-template>
+    </ngx-datatable-column>
+
+
+  </ngx-datatable>
+</div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { KeycloakService } from 'keycloak-angular';
+import { SidecDomains } from '../services/esri/sidec-domains.service';
 
 @Component({
   selector: 'app-heading',
@@ -10,6 +11,8 @@ export class HeadingComponent implements OnInit {
 
   constructor(private kc: KeycloakService) { }
   ngOnInit() {
+    
+    
   }
 
   logout() {

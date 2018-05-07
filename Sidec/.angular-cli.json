@@ -20,6 +20,9 @@
       "prefix": "app",
       "styles": [
         "../node_modules/bootstrap/dist/css/bootstrap.css",
+        "../node_modules/@swimlane/ngx-datatable/release/index.css",
+        "../node_modules/@swimlane/ngx-datatable/release/themes/bootstrap.css",
+        "../node_modules/@swimlane/ngx-datatable/release/assets/icons.css",
         "styles.css"
       ],
       "scripts": [

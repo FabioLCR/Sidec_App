@@ -75,7 +75,15 @@
     -webkit-box-orient: vertical;        
 }
 
-.modal-backdrop {
+/* .modal-backdrop { */
     /* bug fix - no overlay */    
-    display: none !important;    
+    /* display: none !important;     */
+/* } */
+
+.modal-content {
+    max-height: calc( 100vh - 15px );
+}
+
+.modal-body {
+    overflow: auto;
 }

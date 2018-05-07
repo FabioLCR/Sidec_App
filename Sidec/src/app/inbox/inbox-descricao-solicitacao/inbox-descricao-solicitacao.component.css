@@ -1,0 +1,23 @@
+/* Caso o .modal-backdrop no styles.css esteja habilitado */
+/* .light-slate-gray {
+     background-color:rgba(77,88,99,.5); 
+} */
+
+@media (min-width: 768px)
+{
+    .col-md-auto {
+        -ms-flex: auto;
+        flex: auto;
+        width: auto;
+        max-width: none;
+    }
+}
+
+.solPadding {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+.col-form-label {
+    text-align: justify;
+}
