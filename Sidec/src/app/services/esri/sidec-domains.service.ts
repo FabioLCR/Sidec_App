@@ -19,17 +19,17 @@ export class SidecDomains {
     }
   }
 
-  static DC_COBRADE;
-  static DC_SITUACAO;
-  static DC_CAPTACAO;
-  static DC_DOCUMENTO;
-  static DM_BAIRRO;
-  static DC_AA_MOTIVO;
-  static DC_AA_LOCAIS;
-  static DC_AA_CRITICIDADE;
-  static DC_AA_STATENDIMENTO;
-  static DC_AA_PRONTO;
-  static DC_ETAPA_CHAMADO;
+  static DC_COBRADE = null;
+  static DC_SITUACAO = null;
+  static DC_CAPTACAO = null;
+  static DC_DOCUMENTO = null;
+  static DM_BAIRRO = null;
+  static DC_AA_MOTIVO = null;
+  static DC_AA_LOCAIS = null;
+  static DC_AA_CRITICIDADE = null;
+  static DC_AA_STATENDIMENTO = null;
+  static DC_AA_PRONTO = null;
+  static DC_ETAPA_CHAMADO = null;
   static initialized = false;
 
   initialize(): Observable<string> {
@@ -54,7 +54,7 @@ export class SidecDomains {
             domains.forEach(domain => {
               codedValues = domain.codedValues
 
-              console.log(domain.name);
+              //console.log(domain.name);
               this.subject.next('Loading ' + domain.name);
 
               switch (domain.name) {
@@ -96,7 +96,7 @@ export class SidecDomains {
             });
           }).then(() => {
             SidecDomains.initialized = true;
-            console.log('Domains OK!');
+            //console.log('Domains OK!');
             this.subject.next('Domains OK!');
           });
 

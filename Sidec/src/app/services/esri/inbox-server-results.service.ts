@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, ChangeDetectorRef } from "@angular/core";
 import { Observable, Subject } from "rxjs";
 import { PagedData } from "../model/paged-data";
 import { InboxData } from '../model/inbox-data'
@@ -17,7 +17,7 @@ export class InboxServerResultsService {
 
   private subject: Subject<PagedData<InboxData>>;
 
-  constructor() {
+  constructor(private cd: ChangeDetectorRef) {
     if (!esriLoader.isLoaded()) {
       esriLoader.loadScript(options);
     }
@@ -85,6 +85,8 @@ export class InboxServerResultsService {
               }
               //setTimeout(() => {
                 this.subject.next(pagedData);  
+                //this.cd.detectChanges();
+                
               //}, 10);
             });
             

@@ -1,8 +1,9 @@
-import { Component, ViewEncapsulation, Input, OnInit, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ViewEncapsulation, Input, OnInit, OnDestroy } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { SidecDomains } from '../../services/esri/sidec-domains.service';
 import { SolicitacaoService } from '../../services/esri/solicitacao.service';
 import { SolicitacaoData } from '../../services/model/solicitacao-data';
+import { Subject } from 'rxjs/Subject';
 
 @Component({
   selector: 'app-inbox-descricao-solicitacao',
@@ -13,8 +14,9 @@ import { SolicitacaoData } from '../../services/model/solicitacao-data';
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['./inbox-descricao-solicitacao.component.css'],
 })
-export class InboxDescricaoSolicitacaoComponent implements OnInit {
+export class InboxDescricaoSolicitacaoComponent implements OnInit, OnDestroy {
   closeResult: string;
+  private ngUnsubscribe: Subject<any> = new Subject();
 
   @Input() nsol: number;
   @Input() etapa: string;
@@ -27,19 +29,18 @@ export class InboxDescricaoSolicitacaoComponent implements OnInit {
   situacao = "";
   esclarecimento = "";
   solicitante = "";
-  constructor(private modalService: NgbModal, 
-    private solicitacao: SolicitacaoService,
-    private cd: ChangeDetectorRef) {
-      //this.cd.detach();
-     }
+  constructor(private modalService: NgbModal,
+    private solicitacao: SolicitacaoService) {
+  }
 
 
-  
+
   open(content) {
-    //this.cd.reattach();
     this.modalService.open(content, { windowClass: 'light-slate-gray', size: 'lg' });
-    
-    this.solicitacao.getByNSol(this.nsol).subscribe(sol => {
+
+    this.solicitacao.getByNSol(this.nsol)
+    .takeUntil(this.ngUnsubscribe)
+    .subscribe(sol => {
       this.data = sol.data.toLocaleDateString();
       this.cobrade = (sol.cobrade !== null) ? SidecDomains.DC_COBRADE.find(x => x.code === sol.cobrade).name : "";
       this.motivo_alegado = (sol.motivo_alegado !== null) ? SidecDomains.DC_AA_MOTIVO.find(x => x.code === sol.motivo_alegado).name : "";
@@ -47,10 +48,9 @@ export class InboxDescricaoSolicitacaoComponent implements OnInit {
       this.situacao = (sol.situacao !== null) ? SidecDomains.DC_SITUACAO.find(x => x.code === sol.situacao).name : "";
       this.esclarecimento = (sol.esclarecimento !== null) ? sol.esclarecimento : "";
       this.solicitante = (sol.solicitante !== null) ? sol.solicitante : "";
-     
-      //this.cd.detectChanges();
+
     });
-    
+
 
 
     //SolicitacaoData = this.solicitacao.getByNSol(this.nsol);
@@ -58,6 +58,11 @@ export class InboxDescricaoSolicitacaoComponent implements OnInit {
 
   ngOnInit() {
     //this.cd.reattach();
+  }
+
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 
   refresh() {
