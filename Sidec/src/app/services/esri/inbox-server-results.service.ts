@@ -16,14 +16,16 @@ const options = {
 export class InboxServerResultsService {
 
   private subject: Subject<PagedData<InboxData>>;
-
+  private whereTxt: string;
   constructor(private cd: ChangeDetectorRef) {
     if (!esriLoader.isLoaded()) {
       esriLoader.loadScript(options);
     }
     this.subject = new Subject<PagedData<InboxData>>();
+    this.whereTxt = '1=1';
   }
 
+  
   /**
    * A method that mocks a paged server response
    * @param page The selected page
@@ -57,7 +59,7 @@ export class InboxServerResultsService {
           var query = new Query({
             orderByFields: [ "dt_dtinbox DESC" ],
             outFields: ["*"],
-            where: "1=1"
+            where: this.whereTxt
           });
 
           queryTask.executeForCount(query).then((count) => {

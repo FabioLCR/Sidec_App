@@ -1,0 +1,19 @@
+
+@media (max-width: 991.98px) {
+    button#PesquisarButton{
+        width: 100%;
+    }    
+}
+
+@media (min-width: 768px) { 
+    button#PesquisarButton{
+        width: 100%;
+        max-width: 200px;
+    } 
+}
+
+div#DIVPesquisarButton{
+    padding-top: 2rem;
+    width: 100%;
+    height: 100%;
+}

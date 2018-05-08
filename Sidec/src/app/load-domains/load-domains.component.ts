@@ -1,7 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { SidecDomains } from '../services/esri/sidec-domains.service';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs/Subject';
 
 @Component({
   selector: 'app-load-domains',
@@ -10,7 +9,6 @@ import { Subject } from 'rxjs/Subject';
   styleUrls: ['./load-domains.component.css']
 })
 export class LoadDomainsComponent implements OnInit, OnDestroy {
-  private ngUnsubscribe: Subject<any> = new Subject();
   domains = [];
   initialized = SidecDomains.initialized;
 
@@ -21,7 +19,6 @@ export class LoadDomainsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     if (!SidecDomains.initialized) {
       this.sd.initialize()
-        .takeUntil(this.ngUnsubscribe)
         .subscribe(dName => {
           this.updateScreen(dName);
         });
@@ -32,8 +29,7 @@ export class LoadDomainsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.ngUnsubscribe.next();
-    this.ngUnsubscribe.complete();
+
   }
 
   updateScreen(dName: string) {

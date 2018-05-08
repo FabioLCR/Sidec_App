@@ -53,7 +53,7 @@ import { LoadDomainsComponent } from './load-domains/load-domains.component';
       multi: true,
       deps: [KeycloakService]
     },
-    [I18n, { provide: NgbDatepickerI18n, useClass: CustomDatepickerI18n }],
+    [I18n, {provide: NgbDatepickerI18n, useClass: CustomDatepickerI18n}], // define custom NgbDatepickerI18n provider
     [{provide: NgbDateParserFormatter, useClass: NgbDatePTParserFormatter}],
   ],
   bootstrap: [AppComponent]

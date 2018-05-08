@@ -3,7 +3,6 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { SidecDomains } from '../../services/esri/sidec-domains.service';
 import { SolicitacaoService } from '../../services/esri/solicitacao.service';
 import { SolicitacaoData } from '../../services/model/solicitacao-data';
-import { Subject } from 'rxjs/Subject';
 
 @Component({
   selector: 'app-inbox-descricao-solicitacao',
@@ -16,7 +15,6 @@ import { Subject } from 'rxjs/Subject';
 })
 export class InboxDescricaoSolicitacaoComponent implements OnInit, OnDestroy {
   closeResult: string;
-  private ngUnsubscribe: Subject<any> = new Subject();
 
   @Input() nsol: number;
   @Input() etapa: string;
@@ -39,7 +37,6 @@ export class InboxDescricaoSolicitacaoComponent implements OnInit, OnDestroy {
     this.modalService.open(content, { windowClass: 'light-slate-gray', size: 'lg' });
 
     this.solicitacao.getByNSol(this.nsol)
-    .takeUntil(this.ngUnsubscribe)
     .subscribe(sol => {
       this.data = sol.data.toLocaleDateString();
       this.cobrade = (sol.cobrade !== null) ? SidecDomains.DC_COBRADE.find(x => x.code === sol.cobrade).name : "";
@@ -61,8 +58,7 @@ export class InboxDescricaoSolicitacaoComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.ngUnsubscribe.next();
-    this.ngUnsubscribe.complete();
+
   }
 
   refresh() {
