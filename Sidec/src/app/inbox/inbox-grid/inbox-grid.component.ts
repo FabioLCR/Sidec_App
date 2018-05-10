@@ -5,6 +5,9 @@ import { InboxServerResultsService } from '../../services/esri/inbox-server-resu
 import { Page } from '../../services/model/page';
 import { InboxData } from '../../services/model/inbox-data'
 import { DatatableComponent } from '@swimlane/ngx-datatable';
+import { SidecDomains } from '../../services/esri/sidec-domains.service';
+import { Observable, Subject } from 'rxjs';
+
 
 @Component({
   selector: 'app-inbox-grid',
@@ -18,21 +21,26 @@ import { DatatableComponent } from '@swimlane/ngx-datatable';
 })
 
 export class InboxGridComponent implements OnInit {
-  
+
   loadingIndicator: boolean = true;
-  
+
   page = new Page();
   offset: number;
+  pagesize: number;
   rows = new Array<InboxData>();
   paging = false;
 
+  intervalCount: number;
   //Para ServerSide é usado um serviço no construtor
   constructor(private serverResultsService: InboxServerResultsService,
     private cd: ChangeDetectorRef) {
+    this.pagesize = 10;
     this.page.pageNumber = 0;
+
     this.offset = 0;
-    this.page.size = 10;
+    this.page.size = this.pagesize;
     this.paging = false;
+
     //Client Side
     // this.fetch((data) => {
     //   this.rows = data
@@ -50,20 +58,33 @@ export class InboxGridComponent implements OnInit {
     if (this.table && this.table.recalculate) {
       if (this.tableWrapper.nativeElement.clientWidth !== this.currentComponentWidth) {
         this.currentComponentWidth = this.tableWrapper.nativeElement.clientWidth;
-
+        //this.table.recalculate();
       }
       if (this.table.offset !== this.page.pageNumber) {
         this.table.offset = this.page.pageNumber;
         this.paging = false;
+        this.table.recalculate();
       }
-      this.table.recalculate();
+      //this.cd.detectChanges();
     }
 
   }
 
 
   ngOnInit() {
-    this.setPage({ offset: 0 });
+    clearInterval(SidecDomains.refreshIntervalId);
+    //this.cd.detach();
+    // SidecDomains.refreshIntervalId = setInterval(() => {
+    //   try {
+    //     //this.cd.detectChanges();
+    //   }
+    //   catch (err) { }
+    // }, 5000);
+
+    /*this.paging = true;
+    this.loadingIndicator = true;
+    this.page.pageNumber = 0;
+    this.setPage({ offset: 0 });*/
   }
 
   /**
@@ -71,38 +92,56 @@ export class InboxGridComponent implements OnInit {
    * @param page The page to select
    */
 
+  setFilter(whereTxt: string) {
+    this.loadingIndicator = true;
+    this.cd.detectChanges();
+    this.serverResultsService.setWhere(whereTxt);
+    this.cd.detectChanges();
+    this.setPage({ offset: 0 });
+  }
 
   setPage(pageInfo) {
     this.paging = true;
     this.loadingIndicator = true;
     this.page.pageNumber = pageInfo.offset;
-    this.serverResultsService.getResults(this.page).subscribe(pagedData => {
+    this.page.size = this.pagesize;
+    this.cd.detectChanges();
+    this.serverResultsService.getResults(this.page).subscribe(
+      pagedData => {
       this.page = pagedData.page;
       this.rows = pagedData.data;
-      this.rows = [...this.rows];
+      
       // reset page
-      this.table.bodyComponent.updateOffsetY(this.page.pageNumber);
-      this.table.offset = this.page.pageNumber;
+      this.table.bodyComponent.updateOffsetY(pagedData.page.pageNumber);
+      this.table.offset = pagedData.page.pageNumber;
+
+    },
+    err => console.log(err),
+    () => {
+      this.rows = [...this.rows];
       this.loadingIndicator = false;
-      this.table.recalculate();
-      //this.cd.markForCheck();
-
+      //this.table.recalculate();
+      
       //para garantir o bom dimensionamento do Grid o quanto antes após o carregamento
-      for (let tout = 0; tout < 1500; tout += 10) {
-        this.loadingIndicator = false;
-        setTimeout(() => {
-          this.paging = false;
-
-          //Dispara o evento que organiza o grid
-          this.rows = [...this.rows];
+      this.intervalCount = 0;
+      SidecDomains.refreshIntervalId = setInterval(() => {
+        try {
+          this.intervalCount += 1;
+          if (this.intervalCount > 500) {
+            clearInterval(SidecDomains.refreshIntervalId);
+          }
           this.table.recalculate();
+        }
+        catch (err) {  }
+      }, 100);
 
-        }, tout);
-        
-      }
     });
   }
 
+  intervalo()
+  {
+    
+  }
   // @HostListener('document:click', ['$event'])
   // clickout(event) {
   //   if(this.eRef.nativeElement.contains(event.target)) {

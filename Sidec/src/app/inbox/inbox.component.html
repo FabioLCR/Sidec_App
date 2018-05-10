@@ -3,17 +3,16 @@
     <div class="form-row">
         <div class="form-group col-md-5">
             <label for="AgenteSearchInput">Agente:</label>
-            <select class="form-control" id="AgenteSearchInput">
-                <option>Agente 1</option>
-                <option>Agente 2</option>
-                <option>Agente 3</option>
+            <select class="form-control" id="AgenteSearchInput" [(ngModel)]="frmAgente" [ngModelOptions]="{standalone: true}">
+                    <option value=''>Todos</option>
+                    <option *ngFor="let agente of agentes" value={{agente.code}}>{{agente.name}}</option>
             </select>
         </div>
 
         <div class="form-group col-md-4">
             <label for="StatusSearchInput">ETAPA:</label>
-            <select class="form-control" id="StatusSearchInput">
-                <option>Todas</option>
+            <select class="form-control" id="StatusSearchInput" [(ngModel)]="frmEtapa" [ngModelOptions]="{standalone: true}">
+                <option value=''>Todas</option>
                 <option *ngFor="let etapa of etapas" value={{etapa.code}}>{{etapa.name}}</option>
             </select>
         </div>
@@ -22,8 +21,12 @@
             <label for="datepicker">Data:</label>
 
             <div class="input-group">
-                <input class="form-control" id="datepicker" placeholder="dd/mm/yyyy" name="dp" 
-                [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" 
+                <input class="form-control" 
+                id="datepicker" 
+                placeholder="dd/mm/yyyy" 
+                name="dp" 
+                [(ngModel)]="frmData" 
+                ngbDatepicker #d="ngbDatepicker" 
                 >
                 <div class="input-group-append">
                     <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
@@ -37,7 +40,7 @@
     <div class="form-row">
         <div class="col-md-10">
             <label for="PesquisaSearchInput">Pesquisa:</label>
-            <input type="text" class="form-control" id="PesquisaSearchInput" placeholder="Por qualquer informação">
+            <input type="text" [(ngModel)]="frmPesquisa" [ngModelOptions]="{standalone: true}" class="form-control" id="PesquisaSearchInput" placeholder="Por qualquer informação">
         </div>
 
         <div class="col col-md-2">

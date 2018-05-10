@@ -25,13 +25,17 @@ export class InboxServerResultsService {
     this.whereTxt = '1=1';
   }
 
-  
+  public setWhere(whereTxt:string) {
+    this.whereTxt = whereTxt;
+  }
+
   /**
    * A method that mocks a paged server response
    * @param page The selected page
    * @returns {any} An observable containing the employee data
    */
   public getResults(page: Page): Observable<PagedData<InboxData>> {
+    this.subject = new Subject<PagedData<InboxData>>();
     this.getPagedData(page);
     return this.subject;
   }
@@ -44,6 +48,7 @@ export class InboxServerResultsService {
   private getPagedData(page: Page): PagedData<InboxData> {
     //Aqui é onde vai olhar o serviço de acordo com a página
     let pagedData = new PagedData<InboxData>();
+    pagedData.page = page;
 
     esriLoader.loadModules(
       ["esri/layers/FeatureLayer",
@@ -63,12 +68,12 @@ export class InboxServerResultsService {
           });
 
           queryTask.executeForCount(query).then((count) => {
-            page.totalElements = count;
-            page.totalPages = page.totalElements / page.size;
+            pagedData.page.totalElements = count;
+            pagedData.page.totalPages = pagedData.page.totalElements / pagedData.page.size;
             //Preencher os registros da página;
             //let end = Math.min((start + page.size), page.totalElements);
-            query.start = page.pageNumber * page.size;
-            query.num = page.size;
+            query.start = pagedData.page.pageNumber * pagedData.page.size;
+            query.num = pagedData.page.size;
             
             queryTask.execute(query).then((data) => {
               
@@ -83,11 +88,11 @@ export class InboxServerResultsService {
                   data.features[i].attributes.li_etapa                 
                 );
                 pagedData.data.push(inboxData);
-                pagedData.page = page;                
+                this.subject.next(pagedData);                  
               }
               //setTimeout(() => {
-                this.subject.next(pagedData);  
-                //this.cd.detectChanges();
+                //this.subject.next(pagedData);  
+                this.subject.complete();
                 
               //}, 10);
             });

@@ -18,7 +18,7 @@ export class SidecDomains {
       this.subject = new Subject();
     }
   }
-
+  static refreshIntervalId = null;
   static DC_COBRADE = null;
   static DC_SITUACAO = null;
   static DC_CAPTACAO = null;
@@ -97,7 +97,7 @@ export class SidecDomains {
           }).then(() => {
             SidecDomains.initialized = true;
             //console.log('Domains OK!');
-            this.subject.next('Domains OK!');
+            this.subject.complete();
           });
 
         });

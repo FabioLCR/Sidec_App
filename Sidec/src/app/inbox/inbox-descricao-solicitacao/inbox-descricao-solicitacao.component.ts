@@ -37,16 +37,22 @@ export class InboxDescricaoSolicitacaoComponent implements OnInit, OnDestroy {
     this.modalService.open(content, { windowClass: 'light-slate-gray', size: 'lg' });
 
     this.solicitacao.getByNSol(this.nsol)
-    .subscribe(sol => {
-      this.data = sol.data.toLocaleDateString();
-      this.cobrade = (sol.cobrade !== null) ? SidecDomains.DC_COBRADE.find(x => x.code === sol.cobrade).name : "";
-      this.motivo_alegado = (sol.motivo_alegado !== null) ? SidecDomains.DC_AA_MOTIVO.find(x => x.code === sol.motivo_alegado).name : "";
-      this.agente = (sol.agente !== null) ? sol.agente : "";
-      this.situacao = (sol.situacao !== null) ? SidecDomains.DC_SITUACAO.find(x => x.code === sol.situacao).name : "";
-      this.esclarecimento = (sol.esclarecimento !== null) ? sol.esclarecimento : "";
-      this.solicitante = (sol.solicitante !== null) ? sol.solicitante : "";
-
-    });
+      .subscribe(
+        sol => {
+          try {
+            this.data = sol.data.toLocaleDateString();
+            this.cobrade = (sol.cobrade !== null) ? SidecDomains.DC_COBRADE.find(x => x.code === sol.cobrade).name : "";
+            this.motivo_alegado = (sol.motivo_alegado !== null) ? SidecDomains.DC_AA_MOTIVO.find(x => x.code === sol.motivo_alegado).name : "";
+            this.agente = (sol.agente !== null) ? sol.agente : "";
+            this.situacao = (sol.situacao !== null) ? SidecDomains.DC_SITUACAO.find(x => x.code === sol.situacao).name : "";
+            this.esclarecimento = (sol.esclarecimento !== null) ? sol.esclarecimento : "";
+            this.solicitante = (sol.solicitante !== null) ? sol.solicitante : "";
+          } catch (err) {
+            console.log(err);
+          }
+        },
+        err => console.log(err),
+        () => { /*Pode ser implementado Load depois*/});
 
 
 
