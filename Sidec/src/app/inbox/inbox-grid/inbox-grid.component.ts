@@ -6,8 +6,6 @@ import { Page } from '../../services/model/page';
 import { InboxData } from '../../services/model/inbox-data'
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { SidecDomains } from '../../services/esri/sidec-domains.service';
-import { Observable, Subject } from 'rxjs';
-
 
 @Component({
   selector: 'app-inbox-grid',
