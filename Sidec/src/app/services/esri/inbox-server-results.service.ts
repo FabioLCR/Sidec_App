@@ -85,7 +85,8 @@ export class InboxServerResultsService {
                   data.features[i].attributes.tx_motalegado,
                   data.features[i].attributes.tx_nmsolicitante,
                   data.features[i].attributes.li_situacao,
-                  data.features[i].attributes.li_etapa                 
+                  data.features[i].attributes.li_etapa,
+                  data.features[i].attributes.tx_respetapa
                 );
                 pagedData.data.push(inboxData);
                 this.subject.next(pagedData);                  

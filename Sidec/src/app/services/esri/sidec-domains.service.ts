@@ -30,9 +30,19 @@ export class SidecDomains {
   static DC_AA_STATENDIMENTO = null;
   static DC_AA_PRONTO = null;
   static DC_ETAPA_CHAMADO = null;
+  //Pegar do Keycloak posteriormente
+  static DC_AGENTES = null; 
+
   static initialized = false;
 
   initialize(): Observable<string> {
+    this.subject.next('Loading DC_AGENTES');
+    SidecDomains.DC_AGENTES = [
+      {code: 'Fabio', name: 'Fábio Luiz Cortez Ribeiro'},
+      {code: 'Julio', name: 'Julio Bandeira Guerra'},
+      {code: 'Geraldi', name: 'Eduardo Henrique Geraldi Araujo'},
+      {code: 'Marcel', name: 'Marcel Gomez Damico'}
+    ];
     if (!SidecDomains.initialized) {
       var codedValues;
       esriLoader.loadModules(

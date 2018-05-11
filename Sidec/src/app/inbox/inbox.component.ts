@@ -19,14 +19,7 @@ export class InboxComponent implements OnInit {
   constructor(private router: Router) {  }
 
   etapas = [];
-  agentes= [
-    {code: 'Fabio', name: 'Fábio Luiz Cortez Ribeiro'},
-    {code: 'Julio', name: 'Julio Bandeira Guerra'},
-    {code: 'Geraldi', name: 'Eduardo Henrique Geraldi Araujo'},
-    {code: 'Marcel', name: 'Marcel Gomez Damico'}
-  ];
-
-
+  agentes = [];
   fidata: FilterInboxData = new  FilterInboxData();
   
 
@@ -35,6 +28,7 @@ export class InboxComponent implements OnInit {
     this.frmAgente = 'Fabio';
     this.frmEtapa = '';
     this.etapas = SidecDomains.DC_ETAPA_CHAMADO.filter(x => x.code < 6);
+    this.agentes = SidecDomains.DC_AGENTES;
     this.onBtnFilterClick();
   }
 

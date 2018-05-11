@@ -156,6 +156,11 @@ export class InboxGridComponent implements OnInit {
       this.table.offset = this.page.pageNumber;
     }
   }
+
+  onActivate(row) {
+    alert('onSelect')
+  }
+
   // Esta responsabilidade foi para o serviço
   // fetch(cb) {
   //   const req = new XMLHttpRequest();

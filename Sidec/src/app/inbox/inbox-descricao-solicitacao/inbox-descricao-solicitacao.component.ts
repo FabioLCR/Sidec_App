@@ -18,8 +18,10 @@ export class InboxDescricaoSolicitacaoComponent implements OnInit, OnDestroy {
 
   @Input() nsol: number;
   @Input() etapa: string;
+  @Input() responsavel: string;
   @Input() useIcon?: boolean;
 
+  
   data = "";
   cobrade = "";
   motivo_alegado = "";
@@ -27,13 +29,16 @@ export class InboxDescricaoSolicitacaoComponent implements OnInit, OnDestroy {
   situacao = "";
   esclarecimento = "";
   solicitante = "";
+  nome_responsavel = "";
   constructor(private modalService: NgbModal,
     private solicitacao: SolicitacaoService) {
+      
   }
 
 
 
   open(content) {
+    this.nome_responsavel = SidecDomains.DC_AGENTES.find(x => x.code === this.responsavel).name;
     this.modalService.open(content, { windowClass: 'light-slate-gray', size: 'lg' });
 
     this.solicitacao.getByNSol(this.nsol)

@@ -36,7 +36,8 @@
          <app-inbox-descricao-solicitacao class="GridIcons" 
           [useIcon]="false" 
           [nsol]="value" 
-          [etapa]="row['etapa']">
+          [etapa]="row['etapa']"
+          [responsavel]="row['responsavel']">
         </app-inbox-descricao-solicitacao> 
       </ng-template>
     </ngx-datatable-column>
@@ -109,14 +110,13 @@
         <app-inbox-descricao-solicitacao class="GridIcons" 
           [useIcon]="true" 
           [nsol]="row['solicitacao']" 
-          [etapa]="row['etapa']">
+          [etapa]="row['etapa']"
+          [responsavel]="row['responsavel']">
         </app-inbox-descricao-solicitacao>
         <a class="GridIcons" routerLink="NovaSolicitacao">
           <span class="glyphicon glyphicon-pencil"></span>
         </a>
       </ng-template>
     </ngx-datatable-column>
-
-
   </ngx-datatable>
 </div>

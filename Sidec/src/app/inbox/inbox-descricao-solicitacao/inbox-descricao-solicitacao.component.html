@@ -11,8 +11,38 @@
 
   <div class=" modal-body">
     <form>
+      <label class="col-form-label font-weight-bold">Inbox&nbsp;</label>
       <div class="form-row">
+        
+        <div class="form-group col-md-auto">
+          <div class="border rounded solPadding">
+            <label for="staticData" class="col-form-label font-weight-bold">Data:&nbsp;</label>
+            <label class="col-form-label" id="staticData">{{data}}</label>
+          </div>
+        </div>
 
+
+        <div class="form-group col-md-auto">
+          <div class="border rounded solPadding">
+            <label for="staticEtapa" class="col-form-label font-weight-bold">Etapa:&nbsp;</label>
+            <label class="col-form-label" id="staticEtapa">{{etapa}}</label>
+          </div>
+        </div>
+
+        <div class="form-group col-md-auto">
+          <div class="border rounded solPadding">
+            <label for="staticEtapa" class="col-form-label font-weight-bold">Responsável:&nbsp;</label>
+            <label class="col-form-label" id="staticEtapa">{{nome_responsavel}}</label>
+          </div>
+        </div>
+
+      </div>
+
+
+      <hr class="" style="margin-top: 0rem; margin-bottom: 0rem;">
+
+      <label class="col-form-label font-weight-bold">Cadastro&nbsp;</label>
+      <div class="form-row">
         <div class="form-group col-md-auto">
           <div class="border rounded solPadding">
             <label for="staticData" class="col-form-label font-weight-bold">Data:&nbsp;</label>
@@ -50,21 +80,14 @@
 
         <div class="form-group col-md-auto">
           <div class="border rounded solPadding">
-            <label for="staticEtapa" class="col-form-label font-weight-bold">Etapa:&nbsp;</label>
-            <label class="col-form-label" id="staticEtapa">{{etapa}}</label>
-          </div>
-        </div>
-
-        <div class="form-group col-md-auto">
-          <div class="border rounded solPadding">
             <label for="staticSolicitante" class="col-form-label font-weight-bold">Solicitante:&nbsp;</label>
             <label class="col-form-label" id="staticSolicitante">{{solicitante}}</label>
           </div>
         </div>
 
         <div class="form-group col-md-12">
-            <label for="staticEsclarecimento" class="col-form-label font-weight-bold">Esclarecimento:&nbsp;</label>
-            <label class="col-form-label" id="staticEsclarecimento">{{esclarecimento}}</label>
+          <label for="staticEsclarecimento" class="col-form-label font-weight-bold">Esclarecimento:&nbsp;</label>
+          <label class="col-form-label" id="staticEsclarecimento">{{esclarecimento}}</label>
         </div>
 
       </div>
