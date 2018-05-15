@@ -51,11 +51,12 @@ export class SidecDomains {
       ).then(
         ([esriRequest]) => {
           esriRequest("http://noteimg423.img.local/arcgis/rest/services/DESENV/SIDEC/FeatureServer/queryDomains", {
+            //esriRequest("http://p110civitas.img.com.br/arcgis/rest/services/SIDEC/SIDEC/FeatureServer/queryDomains", {
             responseType: "json",
             method: "post",
             query: {
               f: 'json',
-              layers: "[2, 1, 0]"
+              layers: "[1, 0]"
             },
           }).then((response) => {
 

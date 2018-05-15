@@ -60,6 +60,7 @@ export class InboxServerResultsService {
 
           var queryTask = new QueryTask({
             url: "http://noteimg423.img.local/arcgis/rest/services/DESENV/SIDEC/FeatureServer/2",
+            //url: "http://p110civitas.img.com.br/arcgis/rest/services/SIDEC/SIDEC/FeatureServer/1",
           });
           var query = new Query({
             orderByFields: [ "dt_dtinbox DESC" ],

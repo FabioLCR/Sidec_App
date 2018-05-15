@@ -36,13 +36,14 @@
          <app-inbox-descricao-solicitacao class="GridIcons" 
           [useIcon]="false" 
           [nsol]="value" 
+          [dataInbox]="row['data']" 
           [etapa]="row['etapa']"
           [responsavel]="row['responsavel']">
         </app-inbox-descricao-solicitacao> 
       </ng-template>
     </ngx-datatable-column>
 
-    <ngx-datatable-column name="Data" 
+    <ngx-datatable-column name="Data"  prop="data"
       [resizeable]="false"
       [minWidth]=145 
       [width]=145 >
@@ -103,13 +104,14 @@
       [sortable]="false" 
       [canAutoResize]="false"
       [width]=80 
-      [frozenRight]="True">
+      [frozenRight]="false">
       <ng-template ngx-datatable-header-template></ng-template>
 
       <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
         <app-inbox-descricao-solicitacao class="GridIcons" 
           [useIcon]="true" 
           [nsol]="row['solicitacao']" 
+          [dataInbox]="row['data']" 
           [etapa]="row['etapa']"
           [responsavel]="row['responsavel']">
         </app-inbox-descricao-solicitacao>

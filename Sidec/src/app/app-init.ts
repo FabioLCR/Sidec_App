@@ -27,6 +27,7 @@ export function initializer(keycloak: KeycloakService): () => Promise<any> {
                 
                 resolve();
             } catch (error) {
+                resolve();
                 keycloak.logout();
                 alert('Sua conexão foi recusada pelo servidor!');
                 reject();

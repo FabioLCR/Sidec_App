@@ -28,6 +28,7 @@ export class SolicitacaoService {
 
           var queryTask = new QueryTask({
             url: "http://noteimg423.img.local/arcgis/rest/services/DESENV/SIDEC/FeatureServer/0",
+            //url: "http://p110civitas.img.com.br/arcgis/rest/services/SIDEC/SIDEC/FeatureServer/0",
           });
           var query = new Query({
             outFields: ["*"],

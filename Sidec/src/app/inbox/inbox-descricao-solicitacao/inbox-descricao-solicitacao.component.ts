@@ -17,6 +17,7 @@ export class InboxDescricaoSolicitacaoComponent implements OnInit, OnDestroy {
   closeResult: string;
 
   @Input() nsol: number;
+  @Input() dataInbox: string;
   @Input() etapa: string;
   @Input() responsavel: string;
   @Input() useIcon?: boolean;
