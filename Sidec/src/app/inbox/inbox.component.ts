@@ -25,7 +25,7 @@ export class InboxComponent implements OnInit {
 
   ngOnInit() {
     this.frmPesquisa = ''
-    this.frmAgente = 'Fabio';
+    this.frmAgente = 'erick';
     this.frmEtapa = '';
     this.etapas = SidecDomains.DC_ETAPA_CHAMADO.filter(x => x.code < 6);
     this.agentes = SidecDomains.DC_AGENTES;

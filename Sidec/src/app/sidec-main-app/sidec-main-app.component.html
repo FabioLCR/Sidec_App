@@ -1,11 +1,17 @@
-<app-heading></app-heading>
+<div *ngIf="initialized; else loaddomaincontent" style="height: 100%; width: 100%">
+    <app-heading></app-heading>
 
-<div id="Main">
-    <div style="height: 15px;"></div>
+    <div id="Main">
+        <div style="height: 15px;"></div>
 
-    <div role="main" class="container-fluid">
-        <router-outlet></router-outlet>
+        <div role="main" class="container-fluid">
+            <router-outlet></router-outlet>
+        </div>
+
+        <div style="height: 15px;"></div>
     </div>
-
-    <div style="height: 15px;"></div>
 </div>
+
+<ng-template #loaddomaincontent>
+    <app-load-domains (loaded)="reciverFeedback($event)"></app-load-domains>
+</ng-template>

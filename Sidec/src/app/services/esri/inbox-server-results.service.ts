@@ -49,6 +49,7 @@ export class InboxServerResultsService {
     //Aqui é onde vai olhar o serviço de acordo com a página
     let pagedData = new PagedData<InboxData>();
     pagedData.page = page;
+    this.subject.next(pagedData);
 
     esriLoader.loadModules(
       ["esri/layers/FeatureLayer",
@@ -65,7 +66,7 @@ export class InboxServerResultsService {
           var query = new Query({
             orderByFields: [ "dt_dtinbox DESC" ],
             outFields: ["*"],
-            where: this.whereTxt
+            where: this.whereTxt// + "and tx_respetapa not in ('emergencia', 'brunolc', 'Luize')"
           });
 
           queryTask.executeForCount(query).then((count) => {

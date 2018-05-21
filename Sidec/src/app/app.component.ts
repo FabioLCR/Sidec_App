@@ -19,7 +19,7 @@ export class AppComponent implements OnInit{
 
   ngOnInit() {
     if (!SidecDomains.initialized) {
-      this.router.navigate(['load']);
+      this.router.navigate(['']);
     }
   }
 }

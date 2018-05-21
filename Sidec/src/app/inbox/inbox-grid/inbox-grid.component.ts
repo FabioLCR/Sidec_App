@@ -103,6 +103,7 @@ export class InboxGridComponent implements OnInit {
     this.loadingIndicator = true;
     this.page.pageNumber = pageInfo.offset;
     this.page.size = this.pagesize;
+    this.rows = [];
     this.cd.detectChanges();
     this.serverResultsService.getResults(this.page).subscribe(
       pagedData => {
@@ -112,7 +113,7 @@ export class InboxGridComponent implements OnInit {
       // reset page
       this.table.bodyComponent.updateOffsetY(pagedData.page.pageNumber);
       this.table.offset = pagedData.page.pageNumber;
-
+      this.cd.detectChanges();
     },
     err => console.log(err),
     () => {

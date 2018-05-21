@@ -29,8 +29,18 @@ datatable-scroller.datatable-scroll {
     position: fixed;
 }
 
+datatable-footer.datatable-footer .datatable-footer-inner{
+    height: auto !important;
+}
 
-
+.page-count {
+    padding-right: 0.5rem !important;
+    padding-left: 0.5rem !important;
+    text-overflow: ellipsis;
+    position: relative;
+    white-space: pre;
+    text-align: left;
+}
 /* datatable-scroller.datatable-scroll {
     width: auto !important;
 } */

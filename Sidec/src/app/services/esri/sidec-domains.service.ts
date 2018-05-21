@@ -38,10 +38,41 @@ export class SidecDomains {
   initialize(): Observable<string> {
     this.subject.next('Loading DC_AGENTES');
     SidecDomains.DC_AGENTES = [
-      {code: 'Fabio', name: 'Fábio Luiz Cortez Ribeiro'},
-      {code: 'Julio', name: 'Julio Bandeira Guerra'},
-      {code: 'Geraldi', name: 'Eduardo Henrique Geraldi Araujo'},
-      {code: 'Marcel', name: 'Marcel Gomez Damico'}
+      {code: 'erick', name: 'Erick Ferreira Franco'},
+      {code: 'limenzo', name: 'Marcelo Henrique Silva de Miranda Limenzo'},
+      {code: 'costa', name: 'Wagner de Assis Costa'},
+      {code: 'sampaio', name: 'Felipe Gomes Sampaio'},
+      {code: 'ferreira', name: 'Luiz Guilherme Ferreira dos Santos Junior'},
+      {code: 'bcalvano', name: 'Bruno Calvano de Freitas'},
+      {code: 'thainara', name: 'Thainara Sousa Martins'},
+      {code: 'estevao', name: 'Estevão Pereira Escudeiro'},
+      {code: 'naura', name: 'Naura Fernanda Monteiro da Silva'},
+      {code: 'nathalia', name: 'Nathalia da Silva Henrique de Moura'},
+      {code: 'hermsdorff', name: 'Juliana Hermsdorff Vellozo'},
+      {code: 'anaclaudia', name: 'Ana Claudia Morais Ferreira'},
+      {code: 'alexandre', name: 'Alexandre Perez Menezes de Castro'},
+      {code: 'rodrigo', name: 'Rodrigo da Silva Gabriel'},
+      {code: 'josue', name: 'Josué Antonio da Silva'},
+      {code: 'rapozo', name: 'Ronaldo Fonseca Rapozo junior'},
+      {code: 'Bruna', name: 'Bruna Patricio da Costa'},
+      {code: 'josiane', name: 'Josiane de Oliveira'},
+      {code: 'bruno@sidec', name: 'Bruno Calvano de Freitas'},
+      {code: 'allansturms', name: 'Allan Wilis Pereira Sturms'},
+      {code: 'sidney', name: 'Sidney Pereira Bermudo'},
+      {code: 'thales', name: 'Thales da Silva Menezes'},
+      {code: 'rafael', name: 'Rafael Souza Santos'},
+      {code: 'victor', name: 'Victor Queiroz de Almeida'},
+      {code: 'renato', name: 'Renato Gonzaga dos Santos'},
+      {code: 'victoria', name: 'Victoria Alves de Oliveira'},
+      {code: 'marana', name: 'Marana Cristina de Ascenção Almeida'},
+      {code: 'karolina', name: 'Karolina Gameiro Cota Dias'},
+      {code: 'leduardo', name: 'Luis Eduardo Magalhães Santelli Maia'},
+      {code: 'soares', name: 'Sergio Fernando Soares'},
+      {code: 'ewerton', name: 'Ewerton Ferreira Franco'},
+      {code: 'deyve', name: 'Deyve Freitas Barreto'},
+      {code: 'aldighieri', name: 'Ana Carolina Aldighieri'},
+      {code: 'dayanne', name: 'Dayanne Arouche Furtado'},
+      {code: 'caroline', name: 'Caroline da Silva de Araújo Leitão'}
     ];
     if (!SidecDomains.initialized) {
       var codedValues;

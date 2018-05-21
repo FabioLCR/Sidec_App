@@ -1,6 +1,7 @@
-import { Component, OnInit, ChangeDetectorRef, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, OnDestroy, ChangeDetectionStrategy, Output, EventEmitter} from '@angular/core';
 import { SidecDomains } from '../services/esri/sidec-domains.service';
 import { Router } from '@angular/router';
+import { Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-load-domains',
@@ -13,6 +14,10 @@ export class LoadDomainsComponent implements OnInit, OnDestroy {
   domains = [];
   initialized = SidecDomains.initialized;
   refreshIntervalId: any;
+  private subject: Subject<boolean>;
+
+  @Output() loaded = new EventEmitter();
+
   constructor(private sd: SidecDomains,
     private router: Router,
     private ref: ChangeDetectorRef) {
@@ -33,13 +38,17 @@ export class LoadDomainsComponent implements OnInit, OnDestroy {
           err => console.error('Observer got an error: ' + err),
           () => {
             this.ref.reattach();
-            setTimeout(() => { this.sendMeHome() }, 100)
+            setTimeout(() => { 
+              this.loaded.emit(SidecDomains.initialized);
+              this.sendMeHome() }, 100)
           });
     }
     else {
+      this.loaded.emit(SidecDomains.initialized);
       this.sendMeHome();
     }
   }
+
 
   ngOnDestroy() {
     //Levei para o OnNgInit do inbox-grid para corrigir um Bug:

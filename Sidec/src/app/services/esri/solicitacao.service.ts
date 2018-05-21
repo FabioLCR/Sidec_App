@@ -41,7 +41,7 @@ export class SolicitacaoService {
               data.features[0].attributes.tx_motalegado,
               data.features[0].attributes.tx_respreg,
               data.features[0].attributes.li_situacao,
-              data.features[0].attributes.t_obs,
+              data.features[0].attributes.tx_obs,
               data.features[0].attributes.tx_nmsolicitante
             );
             this.subject.next(this.sol);
