@@ -10,7 +10,7 @@ import { SidecDomains } from '../../services/esri/sidec-domains.service';
 @Component({
   selector: 'app-inbox-grid',
   providers: [
-    InboxServerResultsService
+    InboxServerResultsService,
   ],
   templateUrl: './inbox-grid.component.html',
   encapsulation: ViewEncapsulation.None,

@@ -21,3 +21,7 @@
 .col-form-label {
     text-align: justify;
 }
+
+.modal-load app-load-page-bar .progress-linear {
+    padding-right: 2px;
+}

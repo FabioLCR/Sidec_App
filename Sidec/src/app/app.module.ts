@@ -23,6 +23,7 @@ import { InboxGridComponent } from './inbox/inbox-grid/inbox-grid.component';
 import { InboxDescricaoSolicitacaoComponent } from './inbox/inbox-descricao-solicitacao/inbox-descricao-solicitacao.component';
 import { SidecMainAppComponent } from './sidec-main-app/sidec-main-app.component';
 import { LoadDomainsComponent } from './load-domains/load-domains.component';
+import { LoadPageBarComponent } from './load-page-bar/load-page-bar.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { LoadDomainsComponent } from './load-domains/load-domains.component';
     InboxDescricaoSolicitacaoComponent,
     SidecMainAppComponent,
     LoadDomainsComponent,
+    LoadPageBarComponent,
   ],
   imports: [
     BrowserModule,

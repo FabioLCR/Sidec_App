@@ -38,9 +38,9 @@ export class LoadDomainsComponent implements OnInit, OnDestroy {
           err => console.error('Observer got an error: ' + err),
           () => {
             this.ref.reattach();
-            setTimeout(() => { 
+            //setTimeout(() => { 
               this.loaded.emit(SidecDomains.initialized);
-              this.sendMeHome() }, 100)
+              this.sendMeHome();// }, 100)
           });
     }
     else {
