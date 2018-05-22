@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import esriLoader from 'esri-loader';
 import { debug } from 'util';
 import { Observable, Subject } from 'rxjs';
+import { environment } from '../../../environments/environment.prod';
 
 const options = {
   url: 'https://js.arcgis.com/4.7/',
@@ -148,8 +149,7 @@ export class SidecDomains {
           "dojo/domReady!"]
       ).then(
         ([esriRequest]) => {
-          esriRequest("http://noteimg423.img.local/arcgis/rest/services/DESENV/SIDEC/FeatureServer/queryDomains", {
-            //esriRequest("http://p110civitas.img.com.br/arcgis/rest/services/SIDEC/SIDEC/FeatureServer/queryDomains", {
+            esriRequest(environment.esri_request, {
             responseType: "json",
             method: "post",
             query: {

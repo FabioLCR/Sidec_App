@@ -6,6 +6,7 @@ import { Page } from "../model/page";
 
 import esriLoader from 'esri-loader'
 import { DatatableComponent } from "@swimlane/ngx-datatable";
+import { environment } from "../../../environments/environment";
 
 const options = {
   url: 'https://js.arcgis.com/4.7/',
@@ -60,8 +61,7 @@ export class InboxServerResultsService {
         ([FeatureLayer, QueryTask, Query] ) => {
 
           var queryTask = new QueryTask({
-            url: "http://noteimg423.img.local/arcgis/rest/services/DESENV/SIDEC/FeatureServer/2",
-            //url: "http://p110civitas.img.com.br/arcgis/rest/services/SIDEC/SIDEC/FeatureServer/1",
+            url: environment.rest_view_inbox,
           });
           var query = new Query({
             orderByFields: [ "dt_dtinbox DESC" ],

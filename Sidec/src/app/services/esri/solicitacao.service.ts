@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from "rxjs";
 import esriLoader from 'esri-loader';
 import { SolicitacaoData } from '../model/solicitacao-data';
+import { environment } from '../../../environments/environment.prod';
 
 @Injectable()
 export class SolicitacaoService {
@@ -27,8 +28,7 @@ export class SolicitacaoService {
         ([QueryTask, Query]) => {
 
           var queryTask = new QueryTask({
-            url: "http://noteimg423.img.local/arcgis/rest/services/DESENV/SIDEC/FeatureServer/0",
-            //url: "http://p110civitas.img.com.br/arcgis/rest/services/SIDEC/SIDEC/FeatureServer/0",
+            url: environment.rest_feature_solicitacao,
           });
           var query = new Query({
             outFields: ["*"],
