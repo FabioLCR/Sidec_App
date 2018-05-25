@@ -1,0 +1,25 @@
+<form>
+  <div class="row justify-content-end">
+
+    <div class="form-group col-12 col-sm-auto" *ngIf="!isNovaSol">
+      <div class="border rounded solPadding">
+        <label for="staticEtapa" class="col-form-label font-weight-bold">Solicitação:&nbsp;</label>
+        <label class="col-form-label" id="staticEtapa">{{solicitacaoFrm}}</label>
+      </div>
+    </div>
+
+    <div class="form-group col-12 col-sm-auto ">
+      <div class="border rounded solPadding">
+        <label for="staticData" class="col-form-label font-weight-bold">Data:&nbsp;</label>
+        <label class="col-form-label" id="staticData">{{dataFrm}}</label>
+      </div>
+    </div>
+
+    <div class="form-group col-12 col-sm-auto">
+      <div class="border rounded solPadding">
+        <label for="staticAgente" class="col-form-label font-weight-bold">Atendente/Agente:&nbsp;</label>
+        <label class="col-form-label" id="staticAgente">{{agenteFrm}}</label>
+      </div>
+    </div>
+  </div>
+</form>

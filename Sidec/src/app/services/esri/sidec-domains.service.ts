@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import esriLoader from 'esri-loader';
 import { debug } from 'util';
 import { Observable, Subject } from 'rxjs';
-import { environment } from '../../../environments/environment.prod';
+import { environment } from '../../../environments/environment';
 
 const options = {
   url: 'https://js.arcgis.com/4.7/',
@@ -141,7 +141,7 @@ export class SidecDomains {
       { code: 'aldighieri', name: 'Ana Carolina Aldighieri' },
       { code: 'dayanne', name: 'Dayanne Arouche Furtado' },
       { code: 'caroline', name: 'Caroline da Silva de Araújo Leitão' }
-    ].sort(function(a,b) {return (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0);} );
+    ].sort(sort_ascending);
     if (!SidecDomains.initialized) {
       var codedValues;
       esriLoader.loadModules(
@@ -168,34 +168,34 @@ export class SidecDomains {
 
               switch (domain.name) {
                 case 'DC_COBRADE':
-                  SidecDomains.DC_COBRADE = codedValues;
+                  SidecDomains.DC_COBRADE = codedValues.sort(sort_ascending);
                   break;
                 case 'DC_SITUACAO':
                   SidecDomains.DC_SITUACAO = codedValues;
                   break;
                 case 'DC_CAPTACAO':
-                  SidecDomains.DC_CAPTACAO = codedValues;
+                  SidecDomains.DC_CAPTACAO = codedValues.sort(sort_ascending);
                   break;
                 case 'DC_DOCUMENTO':
                   SidecDomains.DC_DOCUMENTO = codedValues;
                   break;
                 case 'DM_BAIRRO':
-                  SidecDomains.DM_BAIRRO = codedValues;
+                  SidecDomains.DM_BAIRRO = codedValues.sort(sort_ascending);
                   break;
                 case 'DC_AA_MOTIVO':
-                  SidecDomains.DC_AA_MOTIVO = codedValues;
+                  SidecDomains.DC_AA_MOTIVO = codedValues.sort(sort_ascending);
                   break;
                 case 'DC_AA_LOCAIS':
-                  SidecDomains.DC_AA_LOCAIS = codedValues;
+                  SidecDomains.DC_AA_LOCAIS = codedValues.sort(sort_ascending);
                   break;
                 case 'DC_AA_CRITICIDADE':
-                  SidecDomains.DC_AA_CRITICIDADE = codedValues;
+                  SidecDomains.DC_AA_CRITICIDADE = codedValues.sort(sort_ascending);
                   break;
                 case 'DC_AA_STATENDIMENTO':
-                  SidecDomains.DC_AA_STATENDIMENTO = codedValues;
+                  SidecDomains.DC_AA_STATENDIMENTO = codedValues.sort(sort_ascending);
                   break;
                 case 'DC_AA_PRONTO':
-                  SidecDomains.DC_AA_PRONTO = codedValues;
+                  SidecDomains.DC_AA_PRONTO = codedValues.sort(sort_ascending);
                   break;
                 case 'DC_ETAPA_CHAMADO':
                   SidecDomains.DC_ETAPA_CHAMADO = codedValues;
@@ -215,6 +215,9 @@ export class SidecDomains {
   }
 }
 
+function sort_ascending(a,b) {
+  return (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0);
+}
 
 /*
 DC_COBRADE

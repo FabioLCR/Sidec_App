@@ -1,0 +1,16 @@
+a:not([href]) {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.modal-load app-load-page-bar .progress-linear {
+    padding-right: 2px;
+}
+
+.modal-header, .modal-footer{
+    min-height: fit-content;
+}
+
+td {
+    width: 100%;
+}

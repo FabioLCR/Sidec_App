@@ -1,0 +1,15 @@
+.dropdown-item {
+    background-color: white;
+}
+
+/* Medium devices (tablets, less than 992px) */
+@media (min-width: 768px) {
+    .inputSolicitante{
+        min-width: 50%;
+    }
+}
+
+.form-control:disabled, .form-control[readonly] {
+    background-color: white;
+    opacity: 1;
+}

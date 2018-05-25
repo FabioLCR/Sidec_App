@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from "rxjs";
 import esriLoader from 'esri-loader';
 import { SolicitacaoData } from '../model/solicitacao-data';
-import { environment } from '../../../environments/environment.prod';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class SolicitacaoService {

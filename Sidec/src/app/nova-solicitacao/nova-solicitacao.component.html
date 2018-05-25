@@ -1,1 +1,85 @@
-<h4>Nova Solicitação</h4>
+<ng-container *ngIf="!edit; else elseTemplate">
+  <h4>Nova Solicitação</h4>
+</ng-container>
+<ng-template #elseTemplate>
+  <h4>Solicitação</h4>
+</ng-template>
+
+
+<div class="">
+  <app-form-heading [isNovaSol]="!edit" [solicitacao]="solicitacao" [data]="data" [agente]="agente"></app-form-heading>
+  <!-- Formulário -->
+  <form>
+    <div class="form-row">
+      <div class="form-group col-md-auto">
+        <label for="CbMotivoAlegado">Motivo alegado</label>
+        <select class="form-control" id="CbMotivoAlegado" [(ngModel)]="frmMotivoAlegado" [ngModelOptions]="{standalone: true}">
+          <option value=''>Selecione um motivo...</option>
+          <option *ngFor="let motivo_alegado of motivo_alegados" value={{motivo_alegado.code}}>{{motivo_alegado.name}}</option>
+        </select>
+      </div>
+
+      <div class="form-group col-md-auto">
+        <label for="inputCOBRADE">COBRADE</label>
+        <div class="input-group">
+
+          <input type="text" readonly class="form-control" [(ngModel)]="frmCobrade" [ngModelOptions]="{standalone: true}">
+          <!-- placeholder="COBRADE" aria-label="COBRADE" aria-describedby="inputCOBRADE"-->
+          <div class="input-group-append" cobrade-selecao  (onCobradeReturn)="onCobradeReturn($event)">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group col-md-auto">
+        <label for="CbSituacao">Situação</label>
+        <select class="form-control" id="CbSituacao" [(ngModel)]="frmSituacao" [ngModelOptions]="{standalone: true}">
+          <option value=''>Selecione uma situação...</option>
+          <option *ngFor="let situacao of situacoes" value={{situacao.code}}>{{situacao.name}}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-12 col-md-auto inputSolicitante">
+        <label for="inputSolicitante">Solicitante</label>
+        <input type="text" class="form-control" id="inputSolicitante" placeholder="Nome do Solicitante">
+      </div>
+
+      <div class="form-group col-12 col-md-auto">
+        <label for="inputDocumento">Documento</label>
+
+        <div class="input-group mb-auto">
+          <div class="input-group-prepend">
+            <select class="btn btn-outline-secondary dropdown-toggle" id="CbTpDocumento" [(ngModel)]="frmTipoDocumento" [ngModelOptions]="{standalone: true}">
+              <option class="dropdown-item" *ngFor="let tdocumento of tdocumentos" value={{tdocumento.code}}>{{tdocumento.name}}</option>
+            </select>
+          </div>
+          <input type="text" class="form-control col-mb-4" aria-label="Text input with dropdown button">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="inputEsclarecimento">Esclarecimento</label>
+      <textarea class="form-control" id="inputEsclarecimento" rows="3" [(ngModel)]="frmEsclarecimento" [ngModelOptions]="{standalone: true}"></textarea>
+    </div>
+
+
+
+    <div class="form-group">
+      <label for="exampleFormControlSelect2">Example multiple select</label>
+      <select multiple class="form-control" id="exampleFormControlSelect2">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">Example textarea</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    </div>
+  </form>
+</div>
+

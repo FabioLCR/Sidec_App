@@ -24,6 +24,8 @@ import { InboxDescricaoSolicitacaoComponent } from './inbox/inbox-descricao-soli
 import { SidecMainAppComponent } from './sidec-main-app/sidec-main-app.component';
 import { LoadDomainsComponent } from './load-domains/load-domains.component';
 import { LoadPageBarComponent } from './load-page-bar/load-page-bar.component';
+import { FormHeadingComponent } from './form-heading/form-heading.component';
+import { CobradeSelecaoComponent } from './cobrade-selecao/cobrade-selecao.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { LoadPageBarComponent } from './load-page-bar/load-page-bar.component';
     SidecMainAppComponent,
     LoadDomainsComponent,
     LoadPageBarComponent,
+    FormHeadingComponent,
+    CobradeSelecaoComponent,
   ],
   imports: [
     BrowserModule,
