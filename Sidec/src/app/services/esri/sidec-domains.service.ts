@@ -142,14 +142,17 @@ export class SidecDomains {
       { code: 'dayanne', name: 'Dayanne Arouche Furtado' },
       { code: 'caroline', name: 'Caroline da Silva de Araújo Leitão' }
     ].sort(sort_ascending);
+
     if (!SidecDomains.initialized) {
       var codedValues;
       esriLoader.loadModules(
         ["esri/request",
-          "dojo/domReady!"]
+         "esri/tasks/QueryTask",
+         "esri/tasks/support/Query",
+         "dojo/domReady!"]
       ).then(
-        ([esriRequest]) => {
-            esriRequest(environment.esri_request, {
+        ([esriRequest,QueryTask, Query]) => {
+            esriRequest(environment.queryDomains, {
             responseType: "json",
             method: "post",
             query: {
@@ -203,12 +206,37 @@ export class SidecDomains {
                 default:
               }
             });
-          }).then(() => {
-            SidecDomains.initialized = true;
-            //console.log('Domains OK!');
-            this.subject.complete();
-          });
 
+            //console.log('Domains OK!');
+            var queryTask = new QueryTask({
+              url: environment.rest_table_cobrade,
+            });
+            var query = new Query({
+              outFields: ["*"],
+              where: "1=1"
+            });
+            queryTask.execute(query).then((data) => {
+              this.subject.next('Loading cobrade descriptions');
+              var cobrades = SidecDomains.DC_COBRADE;
+              SidecDomains.DC_COBRADE = [];
+              for (let i = 0; i < data.features.length; i++) {
+                
+                console.log(data.features[i].attributes.cobrade + ' - ' + 
+                data.features[i].attributes.descricao);
+                var cobrade = cobrades.find(x => x.name.includes(data.features[i].attributes.cobrade))
+                SidecDomains.DC_COBRADE.push({code:cobrade.code,
+                                              name:data.features[i].attributes.cobrade, 
+                                              categoria:data.features[i].attributes.categoria, 
+                                              grupo:data.features[i].attributes.grupo, 
+                                              subgrupo:data.features[i].attributes.subgrupo, 
+                                              tipo:data.features[i].attributes.tipo, 
+                                              subtipo:data.features[i].attributes.subtipo
+                                            });
+              }         
+              SidecDomains.initialized = true;
+              this.subject.complete();     
+            });
+          });
         });
     }
     return this.subject;
