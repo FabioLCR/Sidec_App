@@ -1,0 +1,15 @@
+.node-value {
+    width: calc( 100% - 25px );
+}
+
+tree-internal .tree li div {
+    vertical-align: top;
+}
+
+.folding {
+    padding-top: 0.7em !important;
+}
+
+tree-internal .tree .folding.node-leaf + .node-value {
+    cursor: pointer;
+}

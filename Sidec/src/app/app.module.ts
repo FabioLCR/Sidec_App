@@ -9,6 +9,7 @@ import { NgbDatepickerI18n } from '@ng-bootstrap/ng-bootstrap';
 import { CustomDatepickerI18n, I18n } from './conf/CustomDatepickerI18n';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { TreeModule } from 'ng2-tree';
 
 import { KeycloakService, KeycloakAngularModule } from 'keycloak-angular';
 import { initializer } from './app-init';
@@ -26,6 +27,7 @@ import { LoadDomainsComponent } from './load-domains/load-domains.component';
 import { LoadPageBarComponent } from './load-page-bar/load-page-bar.component';
 import { FormHeadingComponent } from './form-heading/form-heading.component';
 import { CobradeSelecaoComponent } from './cobrade-selecao/cobrade-selecao.component';
+import { TreeViewComponent } from './cobrade-selecao/tree-view/tree-view.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,7 @@ import { CobradeSelecaoComponent } from './cobrade-selecao/cobrade-selecao.compo
     LoadPageBarComponent,
     FormHeadingComponent,
     CobradeSelecaoComponent,
+    TreeViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +53,7 @@ import { CobradeSelecaoComponent } from './cobrade-selecao/cobrade-selecao.compo
     NgbModule.forRoot(),
     NgxDatatableModule,
     KeycloakAngularModule,
-    
+    TreeModule,
   ],
   providers: [
     {

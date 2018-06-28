@@ -5,8 +5,8 @@
 
 export const environment = {
   production: false,
-  rest_view_inbox: "http://noteimg423.img.local/arcgis/rest/services/DESENV/SIDEC/FeatureServer/2",
-  queryDomains: "http://noteimg423.img.local/arcgis/rest/services/DESENV/SIDEC/FeatureServer/queryDomains",
-  rest_feature_solicitacao: "http://noteimg423.img.local/arcgis/rest/services/DESENV/SIDEC/FeatureServer/0",
-  rest_table_cobrade: "http://noteimg423.img.local/arcgis/rest/services/DESENV/SIDEC/FeatureServer/3",
+  rest_view_inbox: "http://noteimg423.img.local:6080/arcgis/rest/services/DESENV/SIDEC/FeatureServer/2",
+  queryDomains: "http://noteimg423.img.local:6080/arcgis/rest/services/DESENV/SIDEC/FeatureServer/queryDomains",
+  rest_feature_solicitacao: "http://noteimg423.img.local:6080/arcgis/rest/services/DESENV/SIDEC/FeatureServer/0",
+  rest_table_cobrade: "http://noteimg423.img.local:6080/arcgis/rest/services/DESENV/SIDEC/FeatureServer/3",
 };

@@ -17,13 +17,17 @@
   </div>
 
 
-  <div class="modal-load" *ngIf="ispageload;">
+  <div class="modal-load" [ngStyle]="{'visibility': ispageload?'visible':'hidden'}">
     <app-load-page-bar></app-load-page-bar>
   </div>
 
   <div class="modal-body">
-    <span>Selecione um código de COBRADE</span>
-    <table class="table table-hover">
+    <span>Selecione um código de COBRADE: {{cobrade_parcial}}</span>
+    <app-tree-view (loaded)="onIsLoaded($event)" (cobrade)="onReceiveCobrade($event)"></app-tree-view>
+    
+    <!-- <tree #treeComponent [tree]="tree"
+          [settings]="settings"></tree> -->
+    <!-- <table class="table table-hover">
       <tbody>
         <tr *ngFor="let cobrade of cobrades">
           <th>
@@ -38,7 +42,7 @@
           <td>{{cobrade.subtipo}}</td>
         </tr>
       </tbody>
-    </table> 
+    </table>  -->
   </div>
 
   <div class="modal-footer">
