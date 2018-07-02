@@ -48,9 +48,9 @@ export class TreeViewService {
                     treeChildren.push(this.add_to_tree(pai, filho, idx, false));
                 }
 
-                if (idx > 1) {
-                    $treeComponent.getControllerByNodeId(pai)['collapse']();
-                }
+                //if (idx > 1) {
+                //    $treeComponent.getControllerByNodeId(pai)['collapse']();
+                //}
             }
         }
         return treeChildren;

@@ -29,6 +29,9 @@ import { FormHeadingComponent } from './form-heading/form-heading.component';
 import { CobradeSelecaoComponent } from './cobrade-selecao/cobrade-selecao.component';
 import { TreeViewComponent } from './cobrade-selecao/tree-view/tree-view.component';
 
+
+import { TreeAppDemo } from './cobrade-selecao/tree-view/demo/tree-app-demo.component'
+import { NodeMenuComponent } from './cobrade-selecao/tree-view/demo/node-menu.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,6 +48,9 @@ import { TreeViewComponent } from './cobrade-selecao/tree-view/tree-view.compone
     FormHeadingComponent,
     CobradeSelecaoComponent,
     TreeViewComponent,
+
+    TreeAppDemo,
+    NodeMenuComponent
   ],
   imports: [
     BrowserModule,
@@ -56,12 +62,12 @@ import { TreeViewComponent } from './cobrade-selecao/tree-view/tree-view.compone
     TreeModule,
   ],
   providers: [
-    {
+    /*{
       provide: APP_INITIALIZER,
       useFactory: initializer,
       multi: true,
       deps: [KeycloakService]
-    },
+    },*/
     [I18n, {provide: NgbDatepickerI18n, useClass: CustomDatepickerI18n}], // define custom NgbDatepickerI18n provider
     [{provide: NgbDateParserFormatter, useClass: NgbDatePTParserFormatter}],
   ],

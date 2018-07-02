@@ -60,10 +60,10 @@ export class TreeViewComponent implements AfterViewInit {
   }
   
   onNodeSelected(e: NodeEvent) {
-    // if (e.node.id.toString().length >= 9)
-    // {
+    if (e.node.id.toString().length >= 9)
+    {
       this.cobrade.emit(e.node.id);
-    // }
+    }
   }
 
   onNodeExpanded(e: NodeEvent) {
