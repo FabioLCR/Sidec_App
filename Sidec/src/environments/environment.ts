@@ -9,4 +9,11 @@ export const environment = {
   queryDomains: "http://noteimg423.img.local:6080/arcgis/rest/services/DESENV/SIDEC/FeatureServer/queryDomains",
   rest_feature_solicitacao: "http://noteimg423.img.local:6080/arcgis/rest/services/DESENV/SIDEC/FeatureServer/0",
   rest_table_cobrade: "http://noteimg423.img.local:6080/arcgis/rest/services/DESENV/SIDEC/FeatureServer/3",
+  geocodeServer:'http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer',
+  homeLocationSymbol: {
+    type: 'picture-marker',
+    url: './assets/img/home.png',
+    width: 27,
+    height: 43
+  },
 };

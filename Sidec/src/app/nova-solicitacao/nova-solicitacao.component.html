@@ -25,7 +25,7 @@
 
           <input type="text" readonly class="form-control" [(ngModel)]="frmCobrade" [ngModelOptions]="{standalone: true}">
           <!-- placeholder="COBRADE" aria-label="COBRADE" aria-describedby="inputCOBRADE"-->
-          <div class="input-group-append" cobrade-selecao  (onCobradeReturn)="onCobradeReturn($event)">
+          <div class="input-group-append" cobrade-selecao (onCobradeReturn)="onCobradeReturn($event)">
           </div>
         </div>
       </div>
@@ -64,6 +64,147 @@
       <textarea class="form-control" id="inputEsclarecimento" rows="3" [(ngModel)]="frmEsclarecimento" [ngModelOptions]="{standalone: true}"></textarea>
     </div>
 
+    <!-- ____________________________________ -->
+
+    <div class="form-row">
+      <div class="form-group col-md-auto">
+        <label for="inputTelefone1">Telefone</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="addonTelefone1">
+              <i class="glyphicon glyphicon-earphone"></i>
+            </span>
+          </div>
+          <input type="text" class="form-control col-mb-4"  id="inputTelefone1" [(ngModel)]="frmTelefone1" placeholder="XX XXXXXXXXX"
+            maxlength="13" (keypress)="mascara('^(?:(?=[0-9])[0-9]{2}|[0-9])(?:(?=$)$|\\s)(?:(?=$)$|[0-9]{0,5})(?:(?=$)$|[1-9]{0,4})$', $event)" aria-describedby="addonTelefone1">
+        </div>
+      </div>
+      
+      <div class="form-group col-md-auto">
+        <label for="inputTelefone2">Telefone2</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="addonTelefone2">
+              <i class="glyphicon glyphicon-earphone"></i>
+            </span>
+          </div>
+          <input type="text" class="form-control col-mb-4"  id="inputTelefone2" [(ngModel)]="frmTelefone2" placeholder="XX XXXXXXXXX"
+            maxlength="13" (keypress)="mascara('^(?:(?=[0-9])[0-9]{2}|[0-9])(?:(?=$)$|\\s)(?:(?=$)$|[0-9]{0,5})(?:(?=$)$|[1-9]{0,4})$', $event)" aria-describedby="addonTelefone2">
+        </div>
+      </div>
+    </div>
+
+    <!-- ____________________________________ -->
+
+    <!-- Prepended text-->
+    <div class="form-group">
+      <label class="col-md-2 control-label" for="prependedtext">Telefone
+        <!-- <h11>*</h11> -->
+      </label>
+      <div class="col-md-2">
+        <div class="input-group">
+          <span class="input-group-addon">
+            <i class="glyphicon glyphicon-earphone"></i>
+          </span>
+          <input id="prependedtext" name="prependedtext" class="form-control" placeholder="XX XXXXX-XXXX" required="" type="text" maxlength="13"
+            pattern="\[0-9]{2}\ [0-9]{4,6}-[0-9]{3,4}$" OnKeyPress="formatar('## #####-####', this)">
+        </div>
+      </div>
+
+      <label class="col-md-1 control-label" for="prependedtext">Telefone</label>
+      <div class="col-md-2">
+        <div class="input-group">
+          <span class="input-group-addon">
+            <i class="glyphicon glyphicon-earphone"></i>
+          </span>
+          <input id="prependedtext" name="prependedtext" class="form-control" placeholder="XX XXXXX-XXXX" type="text" maxlength="13"
+            pattern="\[0-9]{2}\ [0-9]{4,6}-[0-9]{3,4}$" OnKeyPress="formatar('## #####-####', this)">
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <!-- Prepended text-->
+    <div class="form-group">
+      <label class="col-md-2 control-label" for="prependedtext">Email
+        <!-- <h11>*</h11> -->
+      </label>
+      <div class="col-md-5">
+        <div class="input-group">
+          <span class="input-group-addon">
+            <i class="glyphicon glyphicon-envelope"></i>
+          </span>
+          <input id="prependedtext" name="prependedtext" class="form-control" placeholder="email@email.com" required="" type="text"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Search input-->
+    <div class="form-group">
+      <label class="col-md-2 control-label" for="CEP">CEP
+        <!-- <h11>*</h11> -->
+      </label>
+      <div class="col-md-2">
+        <input id="cep" name="cep" placeholder="Apenas números" class="form-control input-md" required="" value="" type="search"
+          maxlength="8" pattern="[0-9]+$">
+      </div>
+      <div class="col-md-2">
+        <button type="button" class="btn btn-primary" onclick="pesquisacep(cep.value)">Pesquisar</button>
+      </div>
+    </div>
+
+    <!-- Prepended text-->
+    <div class="form-group">
+      <label class="col-md-2 control-label" for="prependedtext">Endereço</label>
+      <div class="col-md-4">
+        <div class="input-group">
+          <span class="input-group-addon">Rua</span>
+          <input id="rua" name="rua" class="form-control" placeholder="" required="" readonly="readonly" type="text">
+        </div>
+
+      </div>
+      <div class="col-md-2">
+        <div class="input-group">
+          <span class="input-group-addon">Nº
+            <!-- <h11>*</h11> -->
+          </span>
+          <input id="numero" name="numero" class="form-control" placeholder="" required="" type="text">
+        </div>
+
+      </div>
+
+      <div class="col-md-3">
+        <div class="input-group">
+          <span class="input-group-addon">Bairro</span>
+          <input id="bairro" name="bairro" class="form-control" placeholder="" required="" readonly="readonly" type="text">
+        </div>
+
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-md-2 control-label" for="prependedtext"></label>
+      <div class="col-md-4">
+        <div class="input-group">
+          <span class="input-group-addon">Cidade</span>
+          <input id="cidade" name="cidade" class="form-control" placeholder="" required="" readonly="readonly" type="text">
+        </div>
+
+      </div>
+
+      <div class="col-md-2">
+        <div class="input-group">
+          <span class="input-group-addon">Estado</span>
+          <input id="estado" name="estado" class="form-control" placeholder="" required="" readonly="readonly" type="text">
+        </div>
+
+      </div>
+    </div>
+    <img-esrimap [nome]="'SelecEnd'" (eventClick)="onMapEventClick($event)"></img-esrimap>
 
 
     <div class="form-group">
@@ -81,7 +222,6 @@
       <label for="exampleFormControlTextarea1">Example textarea</label>
       <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
     </div>
-    
+
   </form>
 </div>
-

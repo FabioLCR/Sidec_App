@@ -29,7 +29,7 @@ import { FormHeadingComponent } from './form-heading/form-heading.component';
 import { CobradeSelecaoComponent } from './cobrade-selecao/cobrade-selecao.component';
 import { TreeViewComponent } from './cobrade-selecao/tree-view/tree-view.component';
 
-
+import { EsrimapComponent } from './esrimap/esrimap.component';
 import { TreeAppDemo } from './cobrade-selecao/tree-view/demo/tree-app-demo.component'
 import { NodeMenuComponent } from './cobrade-selecao/tree-view/demo/node-menu.component'
 @NgModule({
@@ -49,6 +49,7 @@ import { NodeMenuComponent } from './cobrade-selecao/tree-view/demo/node-menu.co
     CobradeSelecaoComponent,
     TreeViewComponent,
 
+    EsrimapComponent,
     TreeAppDemo,
     NodeMenuComponent
   ],

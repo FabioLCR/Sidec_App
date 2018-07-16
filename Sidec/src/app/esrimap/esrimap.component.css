@@ -2,8 +2,10 @@ img-esrimap {
   justify-content: space-between;
 }
 
-.full {
+.viewDiv {
   padding: 0;
   margin: 0;
-  height: calc(100vh - 320px);
+  height: 400px;
+  width: 100%;
+  cursor: crosshair;
 }

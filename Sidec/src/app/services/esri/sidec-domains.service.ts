@@ -221,8 +221,8 @@ export class SidecDomains {
               SidecDomains.DC_COBRADE = [];
               for (let i = 0; i < data.features.length; i++) {
                 
-                console.log(data.features[i].attributes.cobrade + ' - ' + 
-                data.features[i].attributes.descricao);
+                //console.log(data.features[i].attributes.cobrade + ' - ' + 
+                //data.features[i].attributes.descricao);
                 var cobrade = cobrades.find(x => x.name.includes(data.features[i].attributes.cobrade))
                 SidecDomains.DC_COBRADE.push({code:cobrade.code,
                                               name:data.features[i].attributes.cobrade, 

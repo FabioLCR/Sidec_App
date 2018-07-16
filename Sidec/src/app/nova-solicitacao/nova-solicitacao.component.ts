@@ -29,7 +29,8 @@ export class NovaSolicitacaoComponent implements OnInit {
   frmTipoDocumento = 1  // Carteira de Identidade
   frmEsclarecimento = ''
   frmCobrade = ''
-
+  frmPontoEndereco = null;//{"ponto": null, "latitude": null, "longitude": null}
+  frmTelefone1 = ''
   ngOnInit() {
     if (!this.edit) {
       this.solicitacao = 0
@@ -47,5 +48,21 @@ export class NovaSolicitacaoComponent implements OnInit {
     
     this.frmCobrade =  event;
     //this.activeModal.close();
+  }
+
+  onMapEventClick(event){
+    this.frmPontoEndereco = event;
+  }
+
+  mascara(mask, vlr){
+    var regx = new RegExp(mask);
+    if (regx.test(vlr.target.value + vlr.key)){
+      if (vlr.target.value.length === 1){
+        vlr.target.value += vlr.key + ' ';
+        vlr.preventDefault();
+      }
+    }else{
+      vlr.preventDefault();
+    }
   }
 }
